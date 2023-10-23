@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Seeker : MonoBehaviour
 {
-    public Transform Target = null;
+    public Transform Target;
     [SerializeField]
     float mySpeed = 5f;
-    [SerializeField]
     Vector3[] myPath;
-    [SerializeField]
     int myTargetIndex;
+    [SerializeField]
+    float myAcceptableStopDistance;
 
     void Start()
     {
@@ -56,10 +56,9 @@ public class Seeker : MonoBehaviour
             yield break;
         }
         Vector3 currentWaypoint = myPath[0];
-
         while (true)
         {
-            if (transform.position == currentWaypoint)
+            if (Vector3.Distance(transform.position, currentWaypoint) < myAcceptableStopDistance)
             {
                 myTargetIndex++;
                 if (myTargetIndex >= myPath.Length)

@@ -37,6 +37,14 @@ public class NodeGrid : MonoBehaviour
         CreateGrid();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return)) 
+        {
+            CreateGrid();
+        }
+    }
+
     public int myMaxSize
     {
         get
@@ -48,32 +56,32 @@ public class NodeGrid : MonoBehaviour
     void CreateGrid()
     {
         myGrid = new Node[myGridSizeX, myGridSizeY];
-        Vector3 worldBottomLeft = transform.position - Vector3.right * GridWorldSize.x / 2 - Vector3.up * GridWorldSize.y / 2;
+        Vector3 worldBottomLeft = transform.position - Vector3.right * GridWorldSize.x / 2 - Vector3.forward * GridWorldSize.y / 2;
 
         for (int x = 0; x < myGridSizeX; x++)
         {
             for (int y = 0; y < myGridSizeY; y++)
             {
-                Vector3 worldPoint = worldBottomLeft + (Vector3.right * (x * myNodeDiameter + NodeRadius) + Vector3.up * (y * myNodeDiameter + NodeRadius));
-                bool walkable = !Physics2D.CircleCast(worldPoint, NodeRadius, worldPoint, 0f, UnwalkableMask);
+                Vector3 worldPoint = worldBottomLeft + (Vector3.right * (x * myNodeDiameter + NodeRadius) + Vector3.forward * (y * myNodeDiameter + NodeRadius));
+                bool walkable = !Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableMask);
 
                 int movementPenalty = 0;
 
-                RaycastHit2D[] hits;
 
-                hits = Physics2D.CircleCastAll(worldPoint, NodeRadius, worldPoint, 1f, myWalkableMask);
-                if (hits.Length == 1)
-                {
-                    movementPenalty = myRegions[hits[0].collider.gameObject.layer];
-                }
-                else if (hits.Length > 1)
-                {
-                    for (int i = 0; i < hits.Length; i++)
-                    {
-                        movementPenalty += myRegions[hits[i].collider.gameObject.layer];
-                    }
+                Ray ray = new Ray(worldPoint + Vector3.up * 50, Vector3.down);
 
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 100, myWalkableMask))
+                {
+                    myRegions.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
                 }
+
+                if (!walkable)
+                {
+                    movementPenalty += myObstacleProximityPenalty;
+                }
+
                 myGrid[x, y] = new Node(walkable, worldPoint, x, y, movementPenalty);
             }
         }
@@ -108,7 +116,7 @@ public class NodeGrid : MonoBehaviour
     public Node NodeFromWorldPoint(Vector3 aWorldPosition)
     {
         float percentX = (aWorldPosition.x + GridWorldSize.x / 2) / GridWorldSize.x;
-        float percentY = (aWorldPosition.y + GridWorldSize.y / 2) / GridWorldSize.y;
+        float percentY = (aWorldPosition.z + GridWorldSize.y / 2) / GridWorldSize.y;
 
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
@@ -121,7 +129,7 @@ public class NodeGrid : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(GridWorldSize.x, GridWorldSize.y, .1f));
+        Gizmos.DrawWireCube(transform.position, new Vector3(GridWorldSize.x, .1f, GridWorldSize.y));
         if (myGrid != null && DisplayGridGizmos)
         {
             foreach (Node n in myGrid)

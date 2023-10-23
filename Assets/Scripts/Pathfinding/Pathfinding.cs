@@ -93,6 +93,7 @@ public class Pathfinding : MonoBehaviour
 
         while (currentNode != aStartNode)
         {
+            currentNode.WorldPosition.y = 1f;
             path.Add(currentNode);
             currentNode = currentNode.Parent;
         }
