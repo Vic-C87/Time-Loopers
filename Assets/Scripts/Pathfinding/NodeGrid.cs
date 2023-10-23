@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class NodeGrid : MonoBehaviour
 {
-    public bool DisplayGridGizmos;
-    public float NodeRadius;
-    public TerrainType[] WalkableRegions;
+    [SerializeField] bool DisplayGridGizmos;
+    [SerializeField] float myNodeRadius;
+    [SerializeField] TerrainType[] WalkableRegions;
     public Vector2 GridWorldSize;
-    public LayerMask UnwalkableMask;
-
-    LayerMask myWalkableMask;
+    [SerializeField] LayerMask myUnwalkableMask;
+    [SerializeField] float myUnwalkableBufferMultiplier;
+    [SerializeField] LayerMask myWalkableMask;
     Dictionary<int, int> myRegions = new Dictionary<int, int>();
 
     float myNodeDiameter;
@@ -18,13 +18,15 @@ public class NodeGrid : MonoBehaviour
 
     Node[,] myGrid;
 
-    public int myObstacleProximityPenalty = 10;
+    public int ObstacleProximityPenalty = 10;
     int myPenaltyMin = int.MaxValue;
     int myPenaltyMax = int.MinValue;
 
+
+
     void Awake()
     {
-        myNodeDiameter = NodeRadius * 2;
+        myNodeDiameter = myNodeRadius * 2;
         myGridSizeX = Mathf.RoundToInt(GridWorldSize.x / myNodeDiameter);
         myGridSizeY = Mathf.RoundToInt(GridWorldSize.y / myNodeDiameter);
 
@@ -35,14 +37,6 @@ public class NodeGrid : MonoBehaviour
         }
 
         CreateGrid();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return)) 
-        {
-            CreateGrid();
-        }
     }
 
     public int myMaxSize
@@ -62,8 +56,8 @@ public class NodeGrid : MonoBehaviour
         {
             for (int y = 0; y < myGridSizeY; y++)
             {
-                Vector3 worldPoint = worldBottomLeft + (Vector3.right * (x * myNodeDiameter + NodeRadius) + Vector3.forward * (y * myNodeDiameter + NodeRadius));
-                bool walkable = !Physics.CheckSphere(worldPoint, NodeRadius, UnwalkableMask);
+                Vector3 worldPoint = worldBottomLeft + (Vector3.right * (x * myNodeDiameter + myNodeRadius) + Vector3.forward * (y * myNodeDiameter + myNodeRadius));
+                bool walkable = !Physics.CheckSphere(worldPoint, myNodeRadius * myUnwalkableBufferMultiplier, myUnwalkableMask);
 
                 int movementPenalty = 0;
 
@@ -79,7 +73,7 @@ public class NodeGrid : MonoBehaviour
 
                 if (!walkable)
                 {
-                    movementPenalty += myObstacleProximityPenalty;
+                    movementPenalty += ObstacleProximityPenalty;
                 }
 
                 myGrid[x, y] = new Node(walkable, worldPoint, x, y, movementPenalty);
