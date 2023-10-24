@@ -18,7 +18,7 @@ public class DoublePistolMan : Tower
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject myBullet = Instantiate(Bullet, transform.position, Quaternion.identity);
+            GameObject myBullet = Instantiate(Bullet, transform.position, Bullet.transform.rotation);
         }
     }
 }

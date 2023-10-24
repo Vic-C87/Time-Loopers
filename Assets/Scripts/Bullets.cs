@@ -20,12 +20,17 @@ public class Bullets : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, myLifeSpan);
-        myBody.AddForce(Vector3.forward * mySpeed, ForceMode.Impulse);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void ShootAt(GameObject aTarget) 
+    { 
+        myBody.AddForce((aTarget.transform.position - transform.position).normalized * mySpeed, ForceMode.Impulse);
+        
     }
 }
