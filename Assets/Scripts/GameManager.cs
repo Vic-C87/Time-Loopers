@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class GameManager : MonoBehaviour
     Queue<Seeker> myEnemies = new Queue<Seeker>();
     List<Seeker> myInactives = new List<Seeker>();
     public bool IsFindingPath = false;
+    float myCurrentLevelEarnings = 0;
 
     void Awake()
     {
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
         else
         {
             sInstance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -72,5 +72,17 @@ public class GameManager : MonoBehaviour
     public bool CheckIfActiveSeeker(Seeker aSeeker)
     {
         return !myInactives.Contains(aSeeker);
+    }
+
+    public void AddLevelEarnings(float aSum)
+    {
+        myCurrentLevelEarnings += aSum;
+    }
+
+    public float GetLevelEarnings()
+    {
+        float levelEarnings = myCurrentLevelEarnings;
+        myCurrentLevelEarnings = 0;
+        return levelEarnings;
     }
 }
