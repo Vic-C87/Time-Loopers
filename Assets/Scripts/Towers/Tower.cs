@@ -12,5 +12,7 @@ public class Tower : MonoBehaviour
 
 public enum EAmmoType
 {
-    none
+    Normal,
+    Fire,
+    Pierce
 }

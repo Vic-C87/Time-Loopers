@@ -17,7 +17,7 @@ public class TowerManager : MonoBehaviour
     {
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.anyKeyDown) 
         {
             Instantiate(PistolMan, mouseWorldPosition, PistolMan.transform.rotation);
         }
