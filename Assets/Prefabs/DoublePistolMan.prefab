@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 284743055101084740}
   - component: {fileID: 2889800909764155887}
   - component: {fileID: 4979062666581900958}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoublePistolMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
