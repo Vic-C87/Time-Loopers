@@ -41,8 +41,8 @@ public class DoublePistolMan : Tower
 
             Debug.Log($"{chosenEnemy}");
 
-            GameObject bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
+            GameObject PistolBullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+            PistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
             Debug.Log("Attacking");
 
         }

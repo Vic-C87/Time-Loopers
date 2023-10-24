@@ -31,6 +31,5 @@ public class Bullets : MonoBehaviour
     public void ShootAt(GameObject aTarget) 
     { 
         myBody.AddForce((aTarget.transform.position - transform.position).normalized * mySpeed, ForceMode.Impulse);
-        
     }
 }
