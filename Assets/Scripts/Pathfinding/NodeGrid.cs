@@ -39,6 +39,11 @@ public class NodeGrid : MonoBehaviour
         CreateGrid();
     }
 
+    public void StartBattle()
+    {
+        CreateGrid();
+    }
+
     public int myMaxSize
     {
         get
