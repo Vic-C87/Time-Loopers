@@ -46,7 +46,9 @@ public class Seeker : MonoBehaviour
 
     public void StopFollow()
     {
-        myTargetIndex = myPath.Length - 1;
+        myPath = null;
+        myTargetIndex = 0;
+        StopCoroutine("FollowPath");
     }
 
     IEnumerator FollowPath()
@@ -69,6 +71,7 @@ public class Seeker : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, mySpeed * Time.deltaTime);
+            transform.LookAt(currentWaypoint);
             yield return null;
         }
     }

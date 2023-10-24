@@ -314,8 +314,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218471599}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33283517, y: -0.0028305382, z: 0.0010020335, w: 0.9429803}
-  m_LocalPosition: {x: 4.9998, y: 38.10311, z: -64.297615}
+  m_LocalRotation: {x: 0.21462218, y: 0.0073228073, z: -0.0016072607, w: 0.97666836}
+  m_LocalPosition: {x: 0.82984406, y: 11.62952, z: 0.092529}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5648699b2692b141a201e8809296097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayGridGizmos: 1
+  DisplayGridGizmos: 0
   myNodeRadius: 0.25
   WalkableRegions:
   - myTerrainMask:
@@ -600,7 +600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451353238}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.44, y: 1, z: 46.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -619,7 +619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bdd6b23f1ad2418ef5c7ef17cd7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemyPrefabs: []
+  myEnemyPrefabs:
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
   myEnemyTarget: {fileID: 209411776}
 --- !u!1 &750030127
 GameObject:
@@ -692,7 +696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984659113}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.99, y: 1, z: 46.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -711,7 +715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bdd6b23f1ad2418ef5c7ef17cd7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemyPrefabs: []
+  myEnemyPrefabs:
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
   myEnemyTarget: {fileID: 209411776}
 --- !u!1 &1515720921
 GameObject:
@@ -856,7 +864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807302848}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1, y: 1, z: 46.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -876,6 +884,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemyPrefabs:
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
+  - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
   - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
   - {fileID: 7800993279688326786, guid: 6b1e51787381db648ae9f2fef3d24a6a, type: 3}
   myEnemyTarget: {fileID: 209411776}
