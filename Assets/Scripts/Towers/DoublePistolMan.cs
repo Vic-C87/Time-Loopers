@@ -6,12 +6,11 @@ using UnityEngine;
 public class DoublePistolMan : Tower
 {
     public GameObject BulletPrefab;
-    [SerializeField]
-    List<GameObject> myPossibleTargets = new List<GameObject>();
 
     private void Awake()
     {
         myLastAttackTime = Time.realtimeSinceStartup;
+        myPossibleTargets = new List<GameObject>();
     }
 
 
@@ -45,22 +44,6 @@ public class DoublePistolMan : Tower
             PistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
             Debug.Log("Attacking");
 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            myPossibleTargets.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            myPossibleTargets.Remove(other.gameObject);
         }
     }
 }
