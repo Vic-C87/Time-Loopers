@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SniperMan : Tower
 {
+    private void Awake()
+    {
+        myLastAttackTime = Time.realtimeSinceStartup;
+        myPossibleTargets = new List<GameObject>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +19,9 @@ public class SniperMan : Tower
     // Update is called once per frame
     void Update()
     {
-        
+        if (myPossibleTargets.Count > 0)
+        {
+            Attack();
+        }
     }
 }

@@ -42,7 +42,6 @@ public class Tower : MonoBehaviour
             GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position, Quaternion.identity);
             pistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
             Debug.Log("Attacking");
-
         }
     }
 }
