@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    [SerializeField] protected GameObject myBulletPrefab;
+
     [SerializeField] protected float myAttackRate;
     [SerializeField] protected int myLevel;
     [SerializeField] protected Vector3 mySize;
@@ -20,6 +22,28 @@ public class Tower : MonoBehaviour
     public void EnemyExitedTrigger(GameObject aTarget)
     {
         myPossibleTargets.Remove(aTarget);
+    }
+
+    protected virtual void Attack()
+    {
+        if (Time.realtimeSinceStartup - myLastAttackTime >= myAttackRate)
+        {
+            myLastAttackTime = Time.realtimeSinceStartup;
+
+            int chosenEnemy = Random.Range(0, myPossibleTargets.Count);
+
+            Vector3 aLookAtPosition = myPossibleTargets[chosenEnemy].transform.position;
+            aLookAtPosition.y = transform.position.y;
+
+            transform.LookAt(aLookAtPosition);
+
+            Debug.Log(chosenEnemy);
+
+            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position, Quaternion.identity);
+            pistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
+            Debug.Log("Attacking");
+
+        }
     }
 }
 
