@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected int myLevel;                  // level of enemy
-    protected float myMaxHP;                // maximum hp 
-    protected float myHP;                   // current hp
-    protected int myScrapValue;             // base value when killed
+    protected int myLevel;                                  // level of enemy
+    protected float myMaxHP;                                // maximum hp 
+    protected float myHP;                                   // current hp
+    protected int myScrapValue;                             // base value when killed
     [SerializeField]protected int myZoneMultiplier;         // multiplier for value based on zone
-    protected float myDamage;               // damage output
-    protected float myAttackRate;           // seconds per hit
-    protected bool myIsAttacking;           // whether attacking or not
-    protected float myLastHit;              // time since last hit
+    protected float myDamage;                               // damage output
+    protected float myAttackRate;                           // seconds per hit
+    protected bool myIsAttacking;                           // whether attacking or not
+    protected float myLastHit;                              // time since last hit
     protected Seeker mySeeker;              
     protected Animator myAnimator;  
 
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         if (myIsAttacking)
         {       
-            if (Time.realtimeSinceStartup - myLastHit > myAttackRate)
+            if ((Time.realtimeSinceStartup - myLastHit) > myAttackRate)
             {
                 DoDamage();
                 myLastHit = Time.realtimeSinceStartup;
@@ -56,7 +56,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-       
+        GameManager.sInstance.AddLevelEarnings(myZoneMultiplier * myScrapValue);
+        Destroy(this);
     }
     public float DoDamage()
     {
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Zone"))
         {
             var zone = other.GetComponent<Zone>();            
             myZoneMultiplier = zone.GetMultiplier();
