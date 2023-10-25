@@ -6,10 +6,15 @@ using UnityEngine;
 public class TowerPlacementManager : MonoBehaviour
 {
     [SerializeField] GameObject myPistolManPrefab;
+    [SerializeField] GameObject myDoublePistolManPrefab;
 
     [SerializeField] GameObject myCurrentPickedTower;
 
     [SerializeField] LayerMask myLayerMask;
+    [SerializeField] LayerMask myUnwalkableMask;
+
+
+    [SerializeField] float myTowerProximityRadius;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +31,9 @@ public class TowerPlacementManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit, 100f, myLayerMask))
-            {                
-                PlaceTower(hit.point);
+            {   
+                if (!Physics.CheckSphere(hit.point, myTowerProximityRadius, myUnwalkableMask))
+                    PlaceTower(hit.point);
             }
         }
 
@@ -43,12 +49,16 @@ public class TowerPlacementManager : MonoBehaviour
         myCurrentPickedTower = myPistolManPrefab;
     }
 
+    public void PickDoublePistolMan()
+    {
+        myCurrentPickedTower = myDoublePistolManPrefab;
+    }
+
     public void PlaceTower(Vector3 aPosition)
     {
         Debug.Log("Placing tower at: " + aPosition);
         aPosition.y += 3;
         Instantiate<GameObject>(myCurrentPickedTower, aPosition, Quaternion.identity);
-        //myCurrentPickedTower = null;
     }
 }
 
