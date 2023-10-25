@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TowerPlacementManager : MonoBehaviour
 {
+    [SerializeField] float myPlacementDelay;
+    float myLastPlacementTime;
     [SerializeField] GameObject myPistolManPrefab;
     [SerializeField] GameObject myDoublePistolManPrefab;
 
@@ -26,6 +28,7 @@ public class TowerPlacementManager : MonoBehaviour
 
     void Awake()
     {
+        myLastPlacementTime = Time.realtimeSinceStartup;
         myNodeDiameter = myNodeRadius * 2;
         myGridSizeX = Mathf.RoundToInt(GridWorldSize.x / myNodeDiameter);
         myGridSizeY = Mathf.RoundToInt(GridWorldSize.y / myNodeDiameter);
@@ -41,8 +44,7 @@ public class TowerPlacementManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100f, myLayerMask))
             {   
-                if (!Physics.CheckSphere(hit.point, myTowerProximityRadius, myUnwalkableMask))
-                    PlaceTower(hit.point);
+                PlaceTower(hit.point);
             }
         }
 
@@ -50,7 +52,6 @@ public class TowerPlacementManager : MonoBehaviour
         {
             myCurrentPickedTower = null;
         }
-
     }
 
     void CreatePlacementGrid()
@@ -80,7 +81,12 @@ public class TowerPlacementManager : MonoBehaviour
         int x = Mathf.RoundToInt((myGridSizeX - 1) * percentX);
         int y = Mathf.RoundToInt((myGridSizeY - 1) * percentY);
         aPlacementPosition = myGrid[x, y];
-        return myOccupiedGrid[x, y];
+        bool isOccupied = myOccupiedGrid[x, y];
+        if (!isOccupied)
+        {
+            myOccupiedGrid[x, y] = true;
+        }
+        return isOccupied;
     }
 
     public void PickPistolMan()
@@ -95,11 +101,15 @@ public class TowerPlacementManager : MonoBehaviour
 
     public void PlaceTower(Vector3 aPosition)
     {
-        if (!NodeFromWorldPoint(aPosition, out Vector3 aPlacementPosition)) 
-        { 
-            Debug.Log("Placing tower at: " + aPlacementPosition);
-            aPlacementPosition.y += myTowerDropHeight;
-            Instantiate<GameObject>(myCurrentPickedTower, aPlacementPosition, Quaternion.identity);
+        if (Time.realtimeSinceStartup - myLastPlacementTime >= myPlacementDelay)
+        {
+            if (!NodeFromWorldPoint(aPosition, out Vector3 aPlacementPosition)) 
+            { 
+                myLastPlacementTime = Time.realtimeSinceStartup;
+                Debug.Log("Placing tower at: " + aPlacementPosition);
+                aPlacementPosition.y += myTowerDropHeight;
+                Instantiate<GameObject>(myCurrentPickedTower, aPlacementPosition, Quaternion.identity);
+            }
         }
     }
 }

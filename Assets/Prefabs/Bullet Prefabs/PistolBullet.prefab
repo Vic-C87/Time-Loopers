@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4571760791066307681}
   - component: {fileID: 3094135078814797141}
   - component: {fileID: 6722027649446735012}
-  - component: {fileID: 7630562448110445074}
+  - component: {fileID: -3051045965173550609}
   m_Layer: 0
   m_Name: PistolBullet
   m_TagString: Untagged
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7630562448110445074
+--- !u!114 &-3051045965173550609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 513637286256557835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6a35b4208a0f3489684167dff33477, type: 3}
+  m_Script: {fileID: 11500000, guid: 155988e0017a88e4c9853f733f12f465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDamage: 5
-  mySpeed: 50
+  myDamage: 1
+  mySpeed: 10
   myLifeSpan: 3
   myAreaDamage: 0
   myAreaOfEffect: {x: 0, y: 0, z: 0}

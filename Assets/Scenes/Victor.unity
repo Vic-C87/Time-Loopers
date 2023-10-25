@@ -1376,6 +1376,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995489206}
   m_CullTransparentMesh: 1
+--- !u!1 &1230054389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230054391}
+  - component: {fileID: 1230054390}
+  m_Layer: 0
+  m_Name: FlameBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1230054390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230054389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24e0a919507b3b4ba91b9438c899305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDamage: 0
+  myDuration: 0
+--- !u!4 &1230054391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230054389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1515720921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,6 +1960,11 @@ PrefabInstance:
       propertyPath: GridWorldSize.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 824644723604907041, guid: 91a01323283de6248a5cb52b258904c9,
+        type: 3}
+      propertyPath: myPlacementDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6307137658138199767, guid: 91a01323283de6248a5cb52b258904c9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1983,3 +2034,4 @@ SceneRoots:
   - {fileID: 1559945837}
   - {fileID: 33301005}
   - {fileID: 6416211155914799000}
+  - {fileID: 1230054391}

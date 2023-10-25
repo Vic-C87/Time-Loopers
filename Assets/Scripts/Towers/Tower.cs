@@ -94,7 +94,7 @@ public class Tower : MonoBehaviour
         {
             myLastAttackTime = Time.realtimeSinceStartup;
 
-            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position, Quaternion.identity);
+            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f), Quaternion.identity);
             pistolBullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
             Debug.Log("Attacking " + myCurrentTarget);
             ResetTarget(myCurrentTarget);
