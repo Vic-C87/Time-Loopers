@@ -946,7 +946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4273590682423141217}
-  - component: {fileID: 6389291536099853727}
+  - component: {fileID: 4291275424100976318}
   - component: {fileID: 1938695247566524952}
   - component: {fileID: 3042325438943531215}
   m_Layer: 7
@@ -975,7 +975,7 @@ Transform:
   - {fileID: 2035822318947177864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6389291536099853727
+--- !u!114 &4291275424100976318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -984,11 +984,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4686732650896313562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129ab089cdcae634d9cf3200fe9c6499, type: 3}
+  m_Script: {fileID: 11500000, guid: 331e55b79011f6a4082c46e1d2631a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBulletPrefab: {fileID: 513637286256557835, guid: e635a3a4c25b8c3428dff3e74df75e7b,
     type: 3}
+  myTurnSpeed: 10
   myAttackRate: 0.16
   myLevel: 2
   mySize: {x: 1, y: 1, z: 1}

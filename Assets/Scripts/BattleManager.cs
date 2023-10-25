@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
-    static public GameManager sInstance;
+    static public BattleManager sInstance;
 
     Queue<Seeker> myEnemies = new Queue<Seeker>();
     List<Seeker> myInactives = new List<Seeker>();
@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
         else
         {
             sInstance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -42,7 +41,6 @@ public class GameManager : MonoBehaviour
         {
             myInactives.Add(aSeeker);
         }
-
     }
 
     public void AddNewPathSeeker(Seeker aSeeker)
@@ -57,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void RequestNewPath()
     {
-        if (/*!myIsFindingPath && */myEnemies.Count > 0)
+        if (myEnemies.Count > 0)
         {
             Seeker seeker = myEnemies.Dequeue();
             if (seeker != null)

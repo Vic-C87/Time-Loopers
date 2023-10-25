@@ -17,6 +17,21 @@ public class TowerPlacementManager : MonoBehaviour
     [SerializeField] float myTowerProximityRadius;
     [SerializeField] float myTowerDropHeight;
 
+    [SerializeField] Vector2 GridWorldSize;
+    [SerializeField] float myNodeRadius;
+    float myNodeDiameter;
+    int myGridSizeX, myGridSizeY;
+    Vector3[,] myGrid;
+    bool[,] myOccupiedGrid;
+
+    void Awake()
+    {
+        myNodeDiameter = myNodeRadius * 2;
+        myGridSizeX = Mathf.RoundToInt(GridWorldSize.x / myNodeDiameter);
+        myGridSizeY = Mathf.RoundToInt(GridWorldSize.y / myNodeDiameter);
+        CreatePlacementGrid();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && myCurrentPickedTower != null) 
@@ -38,6 +53,36 @@ public class TowerPlacementManager : MonoBehaviour
 
     }
 
+    void CreatePlacementGrid()
+    {
+        myGrid = new Vector3[myGridSizeX, myGridSizeY];
+        myOccupiedGrid = new bool[myGridSizeX, myGridSizeY];
+        Vector3 worldBottomLeft = transform.position - Vector3.right * GridWorldSize.x / 2 - Vector3.forward * GridWorldSize.y / 2;
+        for (int x = 0; x < myGridSizeX; x++)
+        {
+            for (int y = 0; y < myGridSizeY; y++)
+            {
+                Vector3 worldPoint = worldBottomLeft + (Vector3.right * (x * myNodeDiameter + myNodeRadius) + Vector3.forward * (y * myNodeDiameter + myNodeRadius));
+                myGrid[x, y] = worldPoint;
+                myOccupiedGrid[x, y] = false;
+            }
+        }
+    }
+
+    public bool NodeFromWorldPoint(Vector3 aWorldPosition, out Vector3 aPlacementPosition)
+    {
+        float percentX = (aWorldPosition.x + GridWorldSize.x / 2) / GridWorldSize.x;
+        float percentY = (aWorldPosition.z + GridWorldSize.y / 2) / GridWorldSize.y;
+
+        percentX = Mathf.Clamp01(percentX);
+        percentY = Mathf.Clamp01(percentY);
+
+        int x = Mathf.RoundToInt((myGridSizeX - 1) * percentX);
+        int y = Mathf.RoundToInt((myGridSizeY - 1) * percentY);
+        aPlacementPosition = myGrid[x, y];
+        return myOccupiedGrid[x, y];
+    }
+
     public void PickPistolMan()
     {
         myCurrentPickedTower = myPistolManPrefab;
@@ -50,9 +95,12 @@ public class TowerPlacementManager : MonoBehaviour
 
     public void PlaceTower(Vector3 aPosition)
     {
-        Debug.Log("Placing tower at: " + aPosition);
-        aPosition.y += myTowerDropHeight;
-        Instantiate<GameObject>(myCurrentPickedTower, aPosition, Quaternion.identity);
+        if (!NodeFromWorldPoint(aPosition, out Vector3 aPlacementPosition)) 
+        { 
+            Debug.Log("Placing tower at: " + aPlacementPosition);
+            aPlacementPosition.y += myTowerDropHeight;
+            Instantiate<GameObject>(myCurrentPickedTower, aPlacementPosition, Quaternion.identity);
+        }
     }
 }
 

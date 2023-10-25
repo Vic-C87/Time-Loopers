@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1812718870279260563}
   - component: {fileID: 5729596080421951172}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: BattleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5648699b2692b141a201e8809296097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayGridGizmos: 0
+  DisplayGridGizmos: 1
   myNodeRadius: 0.25
   WalkableRegions:
   - myTerrainMask:

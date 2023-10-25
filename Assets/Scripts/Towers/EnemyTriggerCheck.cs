@@ -11,23 +11,11 @@ public class EnemyTriggerCheck : MonoBehaviour
         myParent = GetComponentInParent<Tower>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            myParent.EnemyEnteredTrigger(other.gameObject);
+            myParent.EnemyEnteredTrigger(other.gameObject.GetComponent<Enemy>());
         }
     }
 
@@ -35,7 +23,7 @@ public class EnemyTriggerCheck : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            myParent.EnemyExitedTrigger(other.gameObject);
+            myParent.EnemyExitedTrigger(other.gameObject.GetComponent<Enemy>());
         }
     }
 }

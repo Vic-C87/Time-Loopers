@@ -30,7 +30,7 @@ public class PathManager : MonoBehaviour
     {
         if (!myIsProcessingPath && myPathRequestQueue.Count > 0)
         {
-            GameManager.sInstance.IsFindingPath = false;
+            BattleManager.sInstance.IsFindingPath = false;
             myCurrentPathRequest = myPathRequestQueue.Dequeue();
             myIsProcessingPath = true;
             myPathfinding.StartFindPath(myCurrentPathRequest.myPathStart, myCurrentPathRequest.myPathEnd);
@@ -41,7 +41,7 @@ public class PathManager : MonoBehaviour
     {
         myCurrentPathRequest.myCallback(aPath, aSuccessMessage);
         myIsProcessingPath = false;
-        GameManager.sInstance.IsFindingPath = false;
+        BattleManager.sInstance.IsFindingPath = false;
         TryProcessNext();
     }
 
