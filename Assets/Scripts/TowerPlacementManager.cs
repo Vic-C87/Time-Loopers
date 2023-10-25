@@ -46,7 +46,7 @@ public class TowerPlacementManager : MonoBehaviour
     public void PlaceTower(Vector3 aPosition)
     {
         Debug.Log("Placing tower at: " + aPosition);
-        aPosition.y += myCurrentPickedTower.transform.localScale.y / 2;
+        aPosition.y += 3;
         Instantiate<GameObject>(myCurrentPickedTower, aPosition, Quaternion.identity);
         //myCurrentPickedTower = null;
     }

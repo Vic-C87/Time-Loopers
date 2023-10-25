@@ -36,7 +36,10 @@ public class PistolMan : Tower
 
             int chosenEnemy = Random.Range(0, myPossibleTargets.Count);
 
-            transform.LookAt(myPossibleTargets[chosenEnemy].transform);
+            Vector3 aLookAtPosition = myPossibleTargets[chosenEnemy].transform.position;
+            aLookAtPosition.y = transform.position.y;
+
+            transform.LookAt(aLookAtPosition);
 
             Debug.Log(chosenEnemy);
 

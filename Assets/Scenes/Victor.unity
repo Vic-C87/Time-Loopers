@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4b112eae9d272478d33577674f4515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPistolManPrefab: {fileID: 3771675503817553948, guid: da3c1ff113dd90444bfc2099a56c271b,
+  myPistolManPrefab: {fileID: 6946452810077411607, guid: da3c1ff113dd90444bfc2099a56c271b,
     type: 3}
   myCurrentPickedTower: {fileID: 0}
   myLayerMask:
