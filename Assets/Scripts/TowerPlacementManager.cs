@@ -15,14 +15,8 @@ public class TowerPlacementManager : MonoBehaviour
 
 
     [SerializeField] float myTowerProximityRadius;
+    [SerializeField] float myTowerDropHeight;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && myCurrentPickedTower != null) 
@@ -57,7 +51,7 @@ public class TowerPlacementManager : MonoBehaviour
     public void PlaceTower(Vector3 aPosition)
     {
         Debug.Log("Placing tower at: " + aPosition);
-        aPosition.y += 3;
+        aPosition.y += myTowerDropHeight;
         Instantiate<GameObject>(myCurrentPickedTower, aPosition, Quaternion.identity);
     }
 }
