@@ -30,6 +30,12 @@ public class TowerPlacementManager : MonoBehaviour
                 PlaceTower(hit.point);
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            myCurrentPickedTower = null;
+        }
+
     }
 
     public void PickPistolMan()
@@ -42,7 +48,7 @@ public class TowerPlacementManager : MonoBehaviour
         Debug.Log("Placing tower at: " + aPosition);
         aPosition.y += myCurrentPickedTower.transform.localScale.y / 2;
         Instantiate<GameObject>(myCurrentPickedTower, aPosition, Quaternion.identity);
-        myCurrentPickedTower = null;
+        //myCurrentPickedTower = null;
     }
 }
 
