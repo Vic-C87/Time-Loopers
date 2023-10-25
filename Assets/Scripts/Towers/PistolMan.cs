@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class PistolMan : Tower
 {
-    public GameObject BulletPrefab;
-    [SerializeField]
-    List<GameObject> myPossibleTargets = new List<GameObject>();
+    [SerializeField] GameObject BulletPrefab;
 
     private void Awake()
     {
         myLastAttackTime = Time.realtimeSinceStartup;
+        myPossibleTargets = new List<GameObject>();
     }
 
     // Start is called before the first frame update
@@ -39,28 +38,12 @@ public class PistolMan : Tower
 
             transform.LookAt(myPossibleTargets[chosenEnemy].transform);
 
-            Debug.Log($"{chosenEnemy}");
+            Debug.Log(chosenEnemy);
 
-            GameObject PistolBullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
-            PistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
+            GameObject pistolBullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+            pistolBullet.GetComponent<Bullets>().ShootAt(myPossibleTargets[chosenEnemy]);
             Debug.Log("Attacking");
 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            myPossibleTargets.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            myPossibleTargets.Remove(other.gameObject);
         }
     }
 }
