@@ -33,6 +33,11 @@ public class Tower : MonoBehaviour
     {
         myLastAttackTime = Time.realtimeSinceStartup;
         
+
+        if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
+        {
+            myAudioSource.clip = aClip;
+        }
     }
 
     void Update()
