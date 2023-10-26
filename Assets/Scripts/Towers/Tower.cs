@@ -32,10 +32,10 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        /*if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
+        if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
         {
             myAudioSource.clip = aClip;
-        }*/
+        }
     }
 
     void Update()
