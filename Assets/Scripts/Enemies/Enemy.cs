@@ -6,24 +6,27 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected int myLevel;                                  // level of enemy
-    protected float myMaxHP;                                // maximum hp 
+    [SerializeField] protected float myMaxHP = 1000;        // maximum hp 
     protected float myHP;                                   // current hp
-    protected int myScrapValue;                             // base value when killed
-    [SerializeField]protected int myZoneMultiplier;         // multiplier for value based on zone
+    [SerializeField] protected int myScrapValue;                             // base value when killed
+    [SerializeField] protected int myZoneMultiplier;         // multiplier for value based on zone
     protected float myDamage;                               // damage output
     protected float myAttackRate;                           // seconds per hit
     protected bool myIsAttacking;                           // whether attacking or not
     protected float myLastHit;                              // time since last hit
     protected Seeker mySeeker;              
-    protected Animator myAnimator;  
+    protected Animator myAnimator;
+    protected Rigidbody myBody;
 
     // Start is called before the first frame update
     void Awake()
     {
         myZoneMultiplier = 1;
+        myHP = myMaxHP;
         myLastHit = Time.realtimeSinceStartup;
         mySeeker = GetComponent<Seeker>();
         myAnimator = GetComponentInChildren<Animator>();
+        myBody = GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -44,7 +47,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public void TakeDamage(int someDamage)
+    public void TakeDamage(float someDamage, Bullets aBullet)
     {
         myHP -= someDamage;
         if (myHP <= 0)
@@ -52,12 +55,13 @@ public class Enemy : MonoBehaviour
             myHP = 0;
             Die();
         }
+        myBody.AddForce(aBullet.transform.forward * someDamage * 10, ForceMode.Impulse);
     }
 
     private void Die()
     {
         BattleManager.sInstance.AddLevelEarnings(myZoneMultiplier * myScrapValue);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
     public float DoDamage()
     {

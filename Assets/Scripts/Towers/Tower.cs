@@ -12,17 +12,28 @@ public class Tower : MonoBehaviour
     [SerializeField] Vector3 myPosition;
     [SerializeField] EAmmoType myAmmo;
     [SerializeField] ETowerType myTowerType;
+    [SerializeField] EClipName mySoundEffect;
     List<Enemy> myPossibleTargets;
     float myLastAttackTime;
     bool myIsFacingTarget = false;
     bool myHaveTarget = false;
 
     Enemy myCurrentTarget;
+    AudioSource myAudioSource;
 
     void Awake()
     {
         myLastAttackTime = Time.realtimeSinceStartup;
         myPossibleTargets = new List<Enemy>();
+        myAudioSource = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {
+        if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
+        {
+            myAudioSource.clip = aClip;
+        }
     }
 
     void Update()
@@ -99,6 +110,7 @@ public class Tower : MonoBehaviour
             pistolBullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
             Debug.Log("Attacking " + myCurrentTarget);
             ResetTarget(myCurrentTarget);
+            myAudioSource.Play();
         }
     }
 }
