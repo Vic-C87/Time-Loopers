@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField] public int currentScrap { get; set; }
     [SerializeField] private TextMeshProUGUI myScrapText;
+    [SerializeField] private TextMeshProUGUI myNextRound;
+    [SerializeField] private TextMeshProUGUI myWeakness;
+    [SerializeField] private TextMeshProUGUI myRoundDuration;
+    [SerializeField] private ETowerType myTowerType;
     List <Tower> myBoughtTowers = new List <Tower> ();
-    private Tower myTower;
 
     private void Awake()
     {
@@ -34,11 +37,30 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myScrapText.text = $"{currentScrap}";
+        myScrapText.text = $"{currentScrap} Scrap";
 
-        if (true)
+    }
+
+    public static ETowerType TowerType(ETowerType towerType)
+    {
+        switch (towerType) 
         {
+            case ETowerType.PistolMan:
+                return ETowerType.PistolMan;
+
+            case ETowerType.DoublePistolMan:
+                return ETowerType.DoublePistolMan;
+
+            case ETowerType.SniperMan:
+                return ETowerType.SniperMan;
+
+            case ETowerType.FlamethrowerMan:
+                return ETowerType.FlamethrowerMan;
             
+            default: 
+                return ETowerType.Null;         
         }
     }
 }
+
+
