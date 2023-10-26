@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
 {
     static public GameManager sInstance;
 
-    [field: SerializeField] public int currentScrap { get; set; }
+    [field: SerializeField] public int currentScrap = 100;
     [SerializeField] private TextMeshProUGUI myScrapText;
     [SerializeField] private TextMeshProUGUI myNextRound;
     [SerializeField] private TextMeshProUGUI myWeakness;
     [SerializeField] private TextMeshProUGUI myRoundDuration;
     [SerializeField] private ETowerType myTowerType;
-    [SerializeField] List <ETowerType> myBoughtTowers = new List <ETowerType> ();
+    [SerializeField] List<ETowerType> myBoughtTowers = new List<ETowerType>();
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,28 +41,118 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void TowerType(int value)
+    public void AddTower(int value)
     {
-        switch (value) 
+        switch (value)
         {
             case (int)ETowerType.PistolMan:
-                myBoughtTowers.Add(ETowerType.PistolMan);
+                if (currentScrap >= 10)
+                {
+                    myBoughtTowers.Add(ETowerType.PistolMan);
+                    currentScrap -= 10;
+                }
+                else
+                {
+                    Debug.Log("Not enough cash");
+                }
                 break;
 
             case (int)ETowerType.DoublePistolMan:
-                myBoughtTowers.Add(ETowerType.DoublePistolMan);
+                if (currentScrap >= 50)
+                {
+                    myBoughtTowers.Add(ETowerType.DoublePistolMan);
+                    currentScrap -= 50;
+                }
+                else
+                {
+                    Debug.Log("Not enough cash");
+                }
                 break;
 
             case (int)ETowerType.SniperMan:
-                myBoughtTowers.Add(ETowerType.SniperMan);
+                if (currentScrap >= 70)
+                {
+                    myBoughtTowers.Add(ETowerType.SniperMan);
+                    currentScrap -= 70;
+                }
+                else
+                {
+                    Debug.Log("Not enough cash");
+                }
                 break;
 
             case (int)ETowerType.FlamethrowerMan:
-                myBoughtTowers.Add(ETowerType.FlamethrowerMan);
+                if (currentScrap >= 100)
+                {
+                    myBoughtTowers.Add(ETowerType.FlamethrowerMan);
+                    currentScrap -= 100;
+                }
+                else
+                {
+                    Debug.Log("Not enough cash");
+                }
                 break;
 
             default:
                 myBoughtTowers.Add(ETowerType.Null);
+                break;
+        }
+    }
+
+    public void RemoveTower(int value)
+    {
+        switch (value)
+        {
+            case (int)ETowerType.PistolMan:
+                if (myBoughtTowers.Contains(ETowerType.PistolMan))
+                {
+                    myBoughtTowers.Remove(ETowerType.PistolMan);
+                    currentScrap += 5;
+                }
+                else
+                {
+                    Debug.Log("Can't sell what you don't have");
+                }
+                break;
+
+            case (int)ETowerType.DoublePistolMan:
+                if (myBoughtTowers.Contains(ETowerType.DoublePistolMan))
+                {
+                    myBoughtTowers.Remove(ETowerType.DoublePistolMan);
+                    currentScrap += 25;
+                }
+                else
+                {
+                    Debug.Log("Can't sell what you don't have");
+                }
+                break;
+
+            case (int)ETowerType.SniperMan:
+                if (myBoughtTowers.Contains(ETowerType.SniperMan))
+                {
+                    myBoughtTowers.Remove(ETowerType.SniperMan);
+                    currentScrap += 35;
+                }
+                else
+                {
+                    Debug.Log("Can't sell what you don't have");
+                }
+                break;
+
+            case (int)ETowerType.FlamethrowerMan:
+                if (myBoughtTowers.Contains(ETowerType.FlamethrowerMan))
+                {
+                    myBoughtTowers.Remove(ETowerType.FlamethrowerMan);
+                    currentScrap += 50;
+                }
+                else
+                {
+                    Debug.Log("Can't sell what you don't have");
+                }
+                break;
+
+            default:
+                Debug.Log("Can't sell what you don't have");
                 break;
         }
     }
