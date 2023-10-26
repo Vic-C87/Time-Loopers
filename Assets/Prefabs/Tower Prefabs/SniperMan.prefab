@@ -584,6 +584,7 @@ MonoBehaviour:
   myTowerType: 0
   mySoundEffect: 6
   myAnimationController: {fileID: 3365245578764214233}
+  myCost: 0
 --- !u!65 &5295720073558189940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -642,7 +643,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0489c4e9f4c81084595636de3dd95202, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

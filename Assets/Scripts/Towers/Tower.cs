@@ -32,7 +32,6 @@ public class Tower : MonoBehaviour
     void Start()
     {
         myLastAttackTime = Time.realtimeSinceStartup;
-        
 
         if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
         {
@@ -90,11 +89,13 @@ public class Tower : MonoBehaviour
             myHaveTarget = false;
             myIsFacingTarget = false;
             myCurrentTarget = null;
+            
         }
     }
 
     void FaceTarget()
-    {        
+    {
+        myAnimationController.SetBool("myShootingAnimation", false);
         Quaternion oldRotation = transform.rotation;            
         transform.LookAt(myCurrentTarget.transform);
         Quaternion newRotation = transform.rotation;
