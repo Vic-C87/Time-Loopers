@@ -115,5 +115,6 @@ public enum ETowerType
     PistolMan,
     DoublePistolMan,
     SniperMan,
-    FlamethrowerMan
+    FlamethrowerMan,
+    Null
 }
