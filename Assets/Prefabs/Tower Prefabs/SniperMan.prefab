@@ -580,7 +580,8 @@ MonoBehaviour:
   mySize: {x: 1, y: 1, z: 1}
   myPosition: {x: 0, y: 0, z: 0}
   myAmmo: 0
-  mySoudEffect: 6
+  myTowerType: 0
+  mySoundEffect: 6
 --- !u!65 &5295720073558189940
 BoxCollider:
   m_ObjectHideFlags: 0

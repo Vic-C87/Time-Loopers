@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Vector3 myPosition;
     [SerializeField] EAmmoType myAmmo;
     [SerializeField] ETowerType myTowerType;
+    [SerializeField] EClipName mySoundEffect;
     List<Enemy> myPossibleTargets;
     float myLastAttackTime;
     bool myIsFacingTarget = false;
@@ -29,7 +30,7 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        if (SoundManager.sInstance.GetAudioClip(mySoudEffect, out AudioClip aClip)) 
+        if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
         {
             myAudioSource.clip = aClip;
         }
