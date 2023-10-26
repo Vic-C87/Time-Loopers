@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Vector3 mySize;
     [SerializeField] Vector3 myPosition;
     [SerializeField] EAmmoType myAmmo;
+    [SerializeField] ETowerType myTowerType;
     List<Enemy> myPossibleTargets;
     float myLastAttackTime;
     bool myIsFacingTarget = false;
@@ -107,4 +108,12 @@ public enum EAmmoType
     Normal,
     Fire,
     Pierce
+}
+
+public enum ETowerType
+{
+    PistolMan,
+    DoublePistolMan,
+    SniperMan,
+    FlamethrowerMan
 }
