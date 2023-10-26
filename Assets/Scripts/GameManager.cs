@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI myWeakness;
     [SerializeField] private TextMeshProUGUI myRoundDuration;
     [SerializeField] private ETowerType myTowerType;
-    List <Tower> myBoughtTowers = new List <Tower> ();
+    [SerializeField] List <ETowerType> myBoughtTowers = new List <ETowerType> ();
 
     private void Awake()
     {
@@ -41,24 +41,29 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static ETowerType TowerType(ETowerType towerType)
+    public void TowerType(int value)
     {
-        switch (towerType) 
+        switch (value) 
         {
-            case ETowerType.PistolMan:
-                return ETowerType.PistolMan;
+            case (int)ETowerType.PistolMan:
+                myBoughtTowers.Add(ETowerType.PistolMan);
+                break;
 
-            case ETowerType.DoublePistolMan:
-                return ETowerType.DoublePistolMan;
+            case (int)ETowerType.DoublePistolMan:
+                myBoughtTowers.Add(ETowerType.DoublePistolMan);
+                break;
 
-            case ETowerType.SniperMan:
-                return ETowerType.SniperMan;
+            case (int)ETowerType.SniperMan:
+                myBoughtTowers.Add(ETowerType.SniperMan);
+                break;
 
-            case ETowerType.FlamethrowerMan:
-                return ETowerType.FlamethrowerMan;
-            
-            default: 
-                return ETowerType.Null;         
+            case (int)ETowerType.FlamethrowerMan:
+                myBoughtTowers.Add(ETowerType.FlamethrowerMan);
+                break;
+
+            default:
+                myBoughtTowers.Add(ETowerType.Null);
+                break;
         }
     }
 }
