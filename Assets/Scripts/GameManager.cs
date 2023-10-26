@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myScrapText.text = $"{currentScrap} Scrap";
+        myScrapText.text = $"Scrap: {currentScrap}";
 
     }
 
