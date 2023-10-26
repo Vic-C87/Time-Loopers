@@ -25,17 +25,14 @@ public class Tower : MonoBehaviour
 
     void Awake()
     {
-        myLastAttackTime = Time.realtimeSinceStartup;
         myPossibleTargets = new List<Enemy>();
         myAudioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        /*if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
-        {
-            myAudioSource.clip = aClip;
-        }*/
+        myLastAttackTime = Time.realtimeSinceStartup;
+        
     }
 
     void Update()
@@ -97,14 +94,14 @@ public class Tower : MonoBehaviour
         transform.LookAt(myCurrentTarget.transform);
         Quaternion newRotation = transform.rotation;
         transform.rotation = oldRotation;
+        if (transform.rotation.eulerAngles.y <= newRotation.eulerAngles.y + 1f && transform.rotation.eulerAngles.y >= newRotation.eulerAngles.y - 1f)
+        {
+            myIsFacingTarget = true;
+        }
 
         Quaternion currentRotation = Quaternion.Slerp(transform.rotation, newRotation, myTurnSpeed * Time.deltaTime);
         currentRotation.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
         transform.rotation = currentRotation;
-        if (transform.rotation.eulerAngles.y <= newRotation.eulerAngles.y + .2f && transform.rotation.eulerAngles.y >= newRotation.eulerAngles.y - .2f)
-        {
-            myIsFacingTarget = true;
-        }
     }
 
     void Attack()
@@ -113,13 +110,22 @@ public class Tower : MonoBehaviour
         {
             myLastAttackTime = Time.realtimeSinceStartup;
 
-            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f), Quaternion.identity);
+            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f) + (transform.up * .2f), Quaternion.identity);
+            SetBulletRotation(pistolBullet);
             myAnimationController.SetBool("myShootingAnimation", true);
             pistolBullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
             Debug.Log("Attacking " + myCurrentTarget);
             ResetTarget(myCurrentTarget);
             myAudioSource.Play();
         }
+    }
+
+    void SetBulletRotation(GameObject aBullet)
+    {
+        Quaternion bulletRotation = new Quaternion();
+        bulletRotation.eulerAngles = new Vector3(90f, 0f, 0f);
+        bulletRotation.eulerAngles = transform.rotation.eulerAngles + bulletRotation.eulerAngles;
+        aBullet.transform.localRotation = bulletRotation;
     }
 
     public int GetCost()

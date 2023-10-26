@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
             myHP = 0;
             Die();
         }
-        myBody.AddForce(aBullet.transform.forward * someDamage * 10, ForceMode.Impulse);
+        myBody.AddForce(aBullet.transform.up * someDamage, ForceMode.Impulse);
     }
 
     private void Die()
