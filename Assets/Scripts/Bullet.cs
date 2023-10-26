@@ -22,7 +22,9 @@ public class Bullet : Bullets
 
     public override void ShootAt(GameObject aTarget)
     {
-        myBody.AddForce((aTarget.transform.position - transform.position).normalized * mySpeed, ForceMode.Impulse);
+        Vector3 target = aTarget.transform.position - transform.position;
+        target.y -= .5f; 
+        myBody.AddForce((target).normalized * mySpeed, ForceMode.Impulse);
 
     }
 
@@ -30,7 +32,9 @@ public class Bullet : Bullets
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(myDamage, this);
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage(myDamage, this);
+            Destroy(gameObject);
         }
     }
 }
