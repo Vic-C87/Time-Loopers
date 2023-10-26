@@ -121,6 +121,11 @@ public class Tower : MonoBehaviour
             myAudioSource.Play();
         }
     }
+
+    public int GetCost()
+    {
+        return myCost;
+    }
 }
 
 public enum EAmmoType
