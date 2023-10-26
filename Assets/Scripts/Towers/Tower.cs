@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     [SerializeField] ETowerType myTowerType;
     [SerializeField] EClipName mySoundEffect;
     [SerializeField] Animator myAnimationController;
+    [SerializeField] int myCost;
     List<Enemy> myPossibleTargets;
     float myLastAttackTime;
     bool myIsFacingTarget = false;
@@ -119,6 +120,11 @@ public class Tower : MonoBehaviour
             ResetTarget(myCurrentTarget);
             myAudioSource.Play();
         }
+    }
+
+    public int GetCost()
+    {
+        return myCost;
     }
 }
 
