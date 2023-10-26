@@ -26,8 +26,11 @@ public class TowerPlacementManager : MonoBehaviour
     Vector3[,] myGrid;
     bool[,] myOccupiedGrid;
 
+    AudioSource myAudioSource;
+
     void Awake()
     {
+        myAudioSource = GetComponent<AudioSource>();
         myLastPlacementTime = Time.realtimeSinceStartup;
         myNodeDiameter = myNodeRadius * 2;
         myGridSizeX = Mathf.RoundToInt(GridWorldSize.x / myNodeDiameter);
@@ -109,6 +112,11 @@ public class TowerPlacementManager : MonoBehaviour
                 Debug.Log("Placing tower at: " + aPlacementPosition);
                 aPlacementPosition.y += myTowerDropHeight;
                 Instantiate<GameObject>(myCurrentPickedTower, aPlacementPosition, Quaternion.identity);
+                if (SoundManager.sInstance.GetAudioClip(EClipName.SpaceManDrop, out AudioClip aClip))
+                {
+                    myAudioSource.clip = aClip;
+                    myAudioSource.Play();
+                }
             }
         }
     }
