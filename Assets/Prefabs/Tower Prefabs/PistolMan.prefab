@@ -1355,6 +1355,7 @@ GameObject:
   - component: {fileID: 7412229045132433845}
   - component: {fileID: -8408281931472503493}
   - component: {fileID: 2419463797786304071}
+  - component: {fileID: -6774033554418686040}
   m_Layer: 7
   m_Name: PistolMan
   m_TagString: Untagged
@@ -1393,7 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331e55b79011f6a4082c46e1d2631a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBulletPrefab: {fileID: 513637286256557835, guid: e635a3a4c25b8c3428dff3e74df75e7b,
+  myBulletPrefab: {fileID: 6487328153485131684, guid: c48e535d892df8a4a91435d4c91f1868,
     type: 3}
   myTurnSpeed: 10
   myAttackRate: 0.5
@@ -1403,6 +1404,7 @@ MonoBehaviour:
   myAmmo: 0
   myTowerType: 0
   mySoundEffect: 5
+  myAnimationController: {fileID: -6774033554418686040}
 --- !u!65 &7412229045132433845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1461,7 +1463,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a552e694a0a3310409dc75b15df77641, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1547,6 +1549,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-6774033554418686040
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946452810077411607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1cd4b006c9aade84996846ac8dce5a4f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9d852378382cfda4993518787008f963, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7477179495065018477
 GameObject:
   m_ObjectHideFlags: 0

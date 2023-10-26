@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 5295720073558189940}
   - component: {fileID: 57548171251906165}
   - component: {fileID: 4823514195233896748}
+  - component: {fileID: 3365245578764214233}
   m_Layer: 7
   m_Name: SniperMan
   m_TagString: Untagged
@@ -572,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331e55b79011f6a4082c46e1d2631a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBulletPrefab: {fileID: 8576823047460163192, guid: 708270517e1487448b2cdb7862c07b68,
+  myBulletPrefab: {fileID: 109944851195952099, guid: 67df857c3e7e7ff4d91a30e685e74cb7,
     type: 3}
   myTurnSpeed: 10
   myAttackRate: 1
@@ -582,6 +583,7 @@ MonoBehaviour:
   myAmmo: 0
   myTowerType: 0
   mySoundEffect: 6
+  myAnimationController: {fileID: 3365245578764214233}
 --- !u!65 &5295720073558189940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -640,8 +642,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 0489c4e9f4c81084595636de3dd95202, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -726,6 +728,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3365245578764214233
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269868899657230675}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: dfde55e4afcbb034391e631c9e922b5d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 4ff2d97171c923a478d57609f3c4cdd3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2314074096560295014
 GameObject:
   m_ObjectHideFlags: 0

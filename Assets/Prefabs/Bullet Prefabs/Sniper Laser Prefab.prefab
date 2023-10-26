@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5823537552854815354}
   - component: {fileID: 8317819155893230622}
+  - component: {fileID: 1248698031263406989}
   - component: {fileID: 476130523378991195}
   - component: {fileID: 4463426168751466943}
+  - component: {fileID: 3972566962834009498}
   m_Layer: 0
   m_Name: Sniper Laser Prefab
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 109944851195952099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -3.58, y: 2.21, z: -30.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.13, y: 0.67599994, z: 0.13}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -42,6 +44,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109944851195952099}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1248698031263406989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109944851195952099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155988e0017a88e4c9853f733f12f465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDamage: 10
+  mySpeed: 10
+  myLifeSpan: 3
+  myAreaDamage: 1
+  myAreaOfEffect: {x: 1, y: 1, z: 1}
 --- !u!23 &476130523378991195
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107,3 +126,30 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &3972566962834009498
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109944851195952099}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -13,6 +13,7 @@ public class Tower : MonoBehaviour
     [SerializeField] EAmmoType myAmmo;
     [SerializeField] ETowerType myTowerType;
     [SerializeField] EClipName mySoundEffect;
+    [SerializeField] Animator myAnimationController;
     List<Enemy> myPossibleTargets;
     float myLastAttackTime;
     bool myIsFacingTarget = false;
@@ -30,10 +31,10 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
+        /*if (SoundManager.sInstance.GetAudioClip(mySoundEffect, out AudioClip aClip)) 
         {
             myAudioSource.clip = aClip;
-        }
+        }*/
     }
 
     void Update()
@@ -61,6 +62,11 @@ public class Tower : MonoBehaviour
     {
         ResetTarget(aTarget);
         myPossibleTargets.Remove(aTarget);
+
+        if (myPossibleTargets.Count == 0)
+        {
+            myAnimationController.SetBool("myShootingAnimation", false);
+        }
     }
 
     void GetTarget()
@@ -101,12 +107,13 @@ public class Tower : MonoBehaviour
     }
 
     void Attack()
-    {    
+    {
         if (Time.realtimeSinceStartup - myLastAttackTime >= myAttackRate)
         {
             myLastAttackTime = Time.realtimeSinceStartup;
 
             GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f), Quaternion.identity);
+            myAnimationController.SetBool("myShootingAnimation", true);
             pistolBullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
             Debug.Log("Attacking " + myCurrentTarget);
             ResetTarget(myCurrentTarget);
@@ -127,5 +134,6 @@ public enum ETowerType
     PistolMan,
     DoublePistolMan,
     SniperMan,
-    FlamethrowerMan
+    FlamethrowerMan,
+    Null
 }
