@@ -1223,7 +1223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySpawns: {fileID: 1978913097}
-  mySpawnPoints: []
 --- !u!4 &868993770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2853790867956498521, guid: 71d03a6a11d370147bcce7136c37c46d,
@@ -1664,7 +1663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1559945834
 MonoBehaviour:
   m_ObjectHideFlags: 0
