@@ -99,7 +99,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 64
     myTerrainPenalty: 1
-  GridWorldSize: {x: 20, y: 20}
+  GridWorldSize: {x: 45, y: 30}
   myUnwalkableMask:
     serializedVersion: 2
     m_Bits: 128
