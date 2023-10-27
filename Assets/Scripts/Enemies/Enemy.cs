@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     protected Seeker mySeeker;              
     protected Animator myAnimator;
     protected Rigidbody myBody;
+    bool myIsTakingPlasmaDamage = false;
+
+    float myPlasmaDamageTaken;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,7 +34,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
+        myPlasmaDamageTaken = 15f;
+        //Make call to static GameManager to set myPlasmaDamageTaken
     }
 
     // Update is called once per frame
@@ -46,7 +50,17 @@ public class Enemy : MonoBehaviour
             }     
         }
     }
-    
+
+    void FixedUpdate()
+    {
+        if (myIsTakingPlasmaDamage) 
+        {
+            TakePlasmaDamage();
+            myIsTakingPlasmaDamage = false;
+            Debug.Log(myHP + " HP left");
+        }
+    }
+
     public void TakeDamage(float someDamage, Bullets aBullet)
     {
         myHP -= someDamage;
@@ -56,6 +70,16 @@ public class Enemy : MonoBehaviour
             Die();
         }
         myBody.AddForce(aBullet.transform.up * someDamage, ForceMode.Impulse);
+    }
+
+    void TakePlasmaDamage()
+    {
+        myHP -= myPlasmaDamageTaken * Time.fixedDeltaTime;
+        if (myHP <= 0)
+        {
+            myHP = 0;
+            Die();
+        }
     }
 
     private void Die()
@@ -87,4 +111,12 @@ public class Enemy : MonoBehaviour
         }
         
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        //Debug.Log("Plasma damage from " + other.gameObject.tag);
+        myIsTakingPlasmaDamage = true;
+    }
+
+    
 }
