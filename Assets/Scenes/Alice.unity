@@ -1460,7 +1460,7 @@ MonoBehaviour:
 
     Flamethrower
 
-    Man'
+    Clone'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "140 Biomass \nSniper Man"
+  m_text: "140 Biomass \nSniper Clone"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3295,6 +3295,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1548923617}
   - {fileID: 73742144}
   - {fileID: 1879814582}
   - {fileID: 1284521993}
@@ -3326,7 +3327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 08ea89bf827417e4caf74c5353b528fb, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3646,8 +3647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40.403458}
-  m_SizeDelta: {x: 250, y: 80}
+  m_AnchoredPosition: {x: 0, y: -20.645752}
+  m_SizeDelta: {x: 250, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766652033
 MonoBehaviour:
@@ -4267,7 +4268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrades & Unlocks (Base Unit)
+  m_text: Upgrades & Unlocks (Base Clone)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4514,7 +4515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -18.17839, y: -46.512173}
+  m_AnchoredPosition: {x: -18.17839, y: -38.831722}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031392939
@@ -5897,6 +5898,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413568700}
   m_CullTransparentMesh: 1
+--- !u!1 &1548923616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548923617}
+  - component: {fileID: 1548923619}
+  - component: {fileID: 1548923618}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1548923617
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548923616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.23101, y: 0.23101, z: 0.23101}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 668492417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 54.481136, y: -2.43742}
+  m_SizeDelta: {x: 2224, y: 1668}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1548923618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548923616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: d947a4b054d32f74cbaa0599c9be4890, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1548923619
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548923616}
+  m_CullTransparentMesh: 1
 --- !u!1 &1583432046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5956,7 +6029,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '100 Biomass
 
-    Double Pistols Man'
+    Double Pistols Clone'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6075,7 +6148,9 @@ MonoBehaviour:
   myAllAttackSpeedUpgradesBought: 0
   myAllRangeUpgradesBought: 0
   myAllDamageUpgradesBought: 0
-  myFirstUpgradeAttackSpeedBought: 0
+  myFirstAttackSpeedUpgradeBought: 0
+  myFirstRangeUpgradeBought: 0
+  myFirstDamageUpgradeBought: 0
 --- !u!4 &1632863848
 Transform:
   m_ObjectHideFlags: 0
@@ -6593,7 +6668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38.894974, y: 203.08437}
+  m_AnchoredPosition: {x: 53.565445, y: 203.08437}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788707111
@@ -6616,7 +6691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Purchase Units
+  m_text: Create Clone
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6742,7 +6817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 150.72488, y: 0}
+  m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879814583
