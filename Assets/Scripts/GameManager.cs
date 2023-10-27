@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool myAllAttackSpeedUpgradesBought = false;
     [SerializeField] private bool myAllRangeUpgradesBought = false;
     [SerializeField] private bool myAllDamageUpgradesBought = false;
-    [SerializeField] private bool myFirstUpgradeAttackSpeedBought = false;
+    [SerializeField] private bool myFirstAttackSpeedUpgradeBought = false;
+    [SerializeField] private bool myFirstRangeUpgradeBought = false;
+    [SerializeField] private bool myFirstDamageUpgradeBought = false;
     float myAttackSpeedBonus;
     float myRangeBonus;
     float myDamageBonus;
@@ -174,7 +176,7 @@ public class GameManager : MonoBehaviour
         switch (value) 
         { 
             case(int)EUnlockTurret.DoublePistolManUnlock:
-                if (currentBiomass >= 100 && myDoublePistolManUnlocked != true)
+                if (currentBiomass >= 100 && myDoublePistolManUnlocked != true && myAllAttackSpeedUpgradesBought)
                 {
                     currentBiomass -= 100;
                     myDoublePistolManUnlocked = true;
@@ -186,7 +188,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case (int)EUnlockTurret.SniperManUnlock:
-                if (currentBiomass >= 140 && mySniperManUnlocked != true)
+                if (currentBiomass >= 140 && mySniperManUnlocked != true && myAllRangeUpgradesBought)
                 {
                     currentBiomass -= 140;
                     mySniperManUnlocked = true;
@@ -198,7 +200,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case (int)EUnlockTurret.FlamethrowerManUnlock:
-                if (currentBiomass >= 200 && myFlamethrowerManUnlocked != true)
+                if (currentBiomass >= 200 && myFlamethrowerManUnlocked != true && myAllDamageUpgradesBought)
                 {
                     currentBiomass -= 200;
                     myFlamethrowerManUnlocked = true;
@@ -220,63 +222,63 @@ public class GameManager : MonoBehaviour
         float myTier1UpgradeAttackSpeed = -0.1f;
         float myTier2UpgradeAttackSpeed = -0.15f;
 
-        if (currentBiomass >= 40 && myFirstUpgradeAttackSpeedBought == false)
-        {
-            myAttackSpeedBonus += myTier1UpgradeAttackSpeed;
-            myFirstUpgradeAttackSpeedBought = true;
-            currentBiomass -= 40;
-            Debug.Log("First Attack Speed Upgrade Bought!");
-        }
-
-        if (currentBiomass >= 60 && myFirstUpgradeAttackSpeedBought == true && myAllAttackSpeedUpgradesBought == false)
+        if (currentBiomass >= 60 && myFirstAttackSpeedUpgradeBought == true && myAllAttackSpeedUpgradesBought == false)
         {
             myAttackSpeedBonus += myTier2UpgradeAttackSpeed;
             myAllAttackSpeedUpgradesBought = true;
             currentBiomass -= 60;
             Debug.Log("Second Attack Speed Upgrade Bought!");
         }
+
+        if (currentBiomass >= 40 && myFirstAttackSpeedUpgradeBought == false)
+        {
+            myAttackSpeedBonus += myTier1UpgradeAttackSpeed;
+            myFirstAttackSpeedUpgradeBought = true;
+            currentBiomass -= 40;
+            Debug.Log("First Attack Speed Upgrade Bought!");
+        }
     }
     public void BuyRangeUpgrade()
     {
-        bool myFirstUpgradeBought = false;
         int myTier1UpgradeRange = 1;
         int myTier2UpgradeRange = 2;
 
-        if (currentBiomass >= 60 && myFirstUpgradeBought == false)
-        {
-            myRangeBonus += myTier1UpgradeRange;
-            myFirstUpgradeBought = true;
-            currentBiomass -= 60;
-            Debug.Log("First Range Upgrade Bought!");
-        }
-
-        if (currentBiomass >= 80 && myFirstUpgradeBought == true && myAllRangeUpgradesBought == false)
+        if (currentBiomass >= 80 && myFirstRangeUpgradeBought == true && myAllRangeUpgradesBought == false)
         {
             myRangeBonus += myTier2UpgradeRange;
+            myAllRangeUpgradesBought = true;
             currentBiomass -= 80;
             Debug.Log("Second Range Upgrade Bought!");
+        }
+
+        if (currentBiomass >= 60 && myFirstRangeUpgradeBought == false)
+        {
+            myRangeBonus += myTier1UpgradeRange;
+            myFirstRangeUpgradeBought = true;
+            currentBiomass -= 60;
+            Debug.Log("First Range Upgrade Bought!");
         }
     }
 
     public void BuyDamageUpgrade()
     {
-        bool myFirstUpgradeBought = false;
         int myTier1UpgradeDamage = 1;
         int myTier2UpgradeDamage = 2;
 
-        if (currentBiomass >= 80 && myFirstUpgradeBought == false)
-        {
-            myDamageBonus += myTier1UpgradeDamage;
-            myFirstUpgradeBought = true;
-            currentBiomass -= 80;
-            Debug.Log("First Damage Upgrade Bought!");
-        }
-
-        if (currentBiomass >= 120 && myFirstUpgradeBought == true && myAllDamageUpgradesBought == false)
+        if (currentBiomass >= 120 && myFirstDamageUpgradeBought == true && myAllDamageUpgradesBought == false)
         {
             myDamageBonus += myTier2UpgradeDamage;
+            myAllDamageUpgradesBought = true;
             currentBiomass -= 120;
             Debug.Log("Second Damage Upgrade Bought!");
+        }
+
+        if (currentBiomass >= 80 && myFirstDamageUpgradeBought == false)
+        {
+            myDamageBonus += myTier1UpgradeDamage;
+            myFirstDamageUpgradeBought = true;
+            currentBiomass -= 80;
+            Debug.Log("First Damage Upgrade Bought!");
         }
     }
 
