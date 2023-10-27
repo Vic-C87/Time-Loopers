@@ -46,9 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlacementDelay: 1
-  myPistolManPrefab: {fileID: 6946452810077411607, guid: da3c1ff113dd90444bfc2099a56c271b,
+  myPistolManPrefab: {fileID: 8717424801265492333, guid: 2c6fe8d180281b841bea91f6101bcf67,
     type: 3}
-  myDoublePistolManPrefab: {fileID: 4686732650896313562, guid: 9dbd58a0fc781a045acebe84abefeca9,
+  myDoublePistolManPrefab: {fileID: 4573513533556405846, guid: d8a50a98efc2b2346b9d53518d7fa684,
+    type: 3}
+  mySniperManPrefab: {fileID: 1846930061063112983, guid: feff7fba202b8bc4481e5ed912d16cc7,
+    type: 3}
+  myFlamethrowerManPrefab: {fileID: 949184449977792033, guid: a2504e4bc34814a41a2180c07b051872,
     type: 3}
   myCurrentPickedTower: {fileID: 0}
   myLayerMask:

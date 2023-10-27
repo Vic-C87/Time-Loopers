@@ -47,7 +47,7 @@ public class TowerPlacementManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 100f, myLayerMask))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, myLayerMask))
             {   
                 PlaceTower(hit.point);
             }

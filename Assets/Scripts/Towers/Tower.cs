@@ -40,7 +40,8 @@ public class Tower : MonoBehaviour
         {
             myAudioSource.clip = aClip;
         }
-        myParticleSystem.Stop();
+        //if (myTowerType == ETowerType.FlamethrowerMan)
+            //myParticleSystem.Stop();
     }
 
     void Update()
@@ -59,7 +60,14 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            Attack();
+            if (myCurrentTarget !=null)
+            {
+                Attack();
+            }
+            else
+            {
+                ResetTarget(myCurrentTarget);
+            }
         }
     }
 
@@ -103,19 +111,27 @@ public class Tower : MonoBehaviour
 
     void FaceTarget()
     {
-        myAnimationController.SetBool("myShootingAnimation", false);
-        Quaternion oldRotation = transform.rotation;            
-        transform.LookAt(myCurrentTarget.transform);
-        Quaternion newRotation = transform.rotation;
-        transform.rotation = oldRotation;
-        if (transform.rotation.eulerAngles.y <= newRotation.eulerAngles.y + 1f && transform.rotation.eulerAngles.y >= newRotation.eulerAngles.y - 1f)
+        if (myCurrentTarget !=  null) 
         {
-            myIsFacingTarget = true;
-        }
+            myAnimationController.SetBool("myShootingAnimation", false);
+            Quaternion oldRotation = transform.rotation;            
+            transform.LookAt(myCurrentTarget.transform);
+            Quaternion newRotation = transform.rotation;
+            transform.rotation = oldRotation;
+            if (transform.rotation.eulerAngles.y <= newRotation.eulerAngles.y + 1f && transform.rotation.eulerAngles.y >= newRotation.eulerAngles.y - 1f)
+            {
+                myIsFacingTarget = true;
+            }
 
-        Quaternion currentRotation = Quaternion.Slerp(transform.rotation, newRotation, myTurnSpeed * Time.deltaTime);
-        currentRotation.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
-        transform.rotation = currentRotation;
+            Quaternion currentRotation = Quaternion.Slerp(transform.rotation, newRotation, myTurnSpeed * Time.deltaTime);
+            currentRotation.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
+            transform.rotation = currentRotation;
+
+        }
+        else
+        {
+            ResetTarget(myCurrentTarget);
+        }
     }
 
     void Attack()

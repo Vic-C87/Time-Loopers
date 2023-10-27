@@ -115,7 +115,8 @@ public class Enemy : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         //Debug.Log("Plasma damage from " + other.gameObject.tag);
-        myIsTakingPlasmaDamage = true;
+        if (other.GetComponent<ParticleSystem>().GetComponentInParent<Tower>())
+            myIsTakingPlasmaDamage = true;
     }
 
     
