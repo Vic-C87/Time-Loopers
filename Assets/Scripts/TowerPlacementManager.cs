@@ -123,6 +123,11 @@ public class TowerPlacementManager : MonoBehaviour
         myLevelStartTime = Time.realtimeSinceStartup;
         myGameStarted = true;
         myIsPlacing = false;
+        if (SoundManager.sInstance.GetAudioClip(EClipName.BattleMusic, out AudioClip anAudioClip)) 
+        {
+            GameManager.sInstance.myAudioSource.clip = anAudioClip;
+            GameManager.sInstance.myAudioSource.Play();
+        }
     }
 
     void SetAvailabelUnits()

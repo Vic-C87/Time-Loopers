@@ -69,7 +69,9 @@ public enum EClipName
     LaserWall,
     MuscleDuck,
     Plasmathrower,
-    SpaceManDrop
+    SpaceManDrop,
+    ShopMusic,
+    BattleMusic
 }
 
 [Serializable]

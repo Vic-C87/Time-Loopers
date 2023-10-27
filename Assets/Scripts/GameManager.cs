@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
 
     GameObject myCanvas;
 
+    [SerializeField] EClipName myClipName;
+
+    public AudioSource myAudioSource;
+
     private void Awake()
     {
         currentBiomass = 5000;
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         myCanvas = GetComponentInChildren<Canvas>().gameObject;
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -70,8 +75,15 @@ public class GameManager : MonoBehaviour
     public void LoadShop()
     {
         currentBiomass += LevelEarnings;
+        myClipName = EClipName.ShopMusic;
+        if (SoundManager.sInstance.GetAudioClip(myClipName, out AudioClip anAudioClip) )
+        {
+            myAudioSource.clip = anAudioClip;
+            myAudioSource.Play();
+        }
         SceneManager.LoadScene(1);
         myCanvas.SetActive(true);
+        
     }
 
     public void ExitShop()
@@ -79,6 +91,7 @@ public class GameManager : MonoBehaviour
         myCanvas.SetActive(false);
         LevelEarnings = 0;
         SceneManager.LoadScene(2);
+        Time.timeScale = 1f;
     }
 
     void UpdateBiomassText()
