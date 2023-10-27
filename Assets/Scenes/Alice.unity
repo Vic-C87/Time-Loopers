@@ -6075,6 +6075,7 @@ MonoBehaviour:
   myAllAttackSpeedUpgradesBought: 1
   myAllRangeUpgradesBought: 1
   myAllDamageUpgradesBought: 0
+  myFirstUpgradeAttackSpeedBought: 0
 --- !u!4 &1632863848
 Transform:
   m_ObjectHideFlags: 0
