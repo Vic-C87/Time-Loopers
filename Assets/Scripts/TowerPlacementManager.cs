@@ -61,6 +61,10 @@ public class TowerPlacementManager : MonoBehaviour
 
     ETowerType myCurrentPickedType;
 
+    [SerializeField] TextMeshProUGUI myWinLevelText;
+    [SerializeField] GameObject myWinLevel;
+    [SerializeField] string myWinText;
+
     void Awake()
     {
         myAudioSource = GetComponent<AudioSource>();
@@ -74,6 +78,7 @@ public class TowerPlacementManager : MonoBehaviour
     private void Start()
     {
         SetAvailabelUnits();
+        myWinLevel.SetActive(false);
     }
 
     void Update()
@@ -102,6 +107,8 @@ public class TowerPlacementManager : MonoBehaviour
             myGameStarted = false;
             myTimerText.text = "Time Left: " + 0;
             Time.timeScale = 0f;
+            myWinLevel.SetActive(true);
+            myWinLevelText.text = myWinText + " " + GameManager.sInstance.LevelEarnings + " Biomass";
         }
         if (myGameStarted)
             myTimerText.text = "Time Left: " + (myLevelTime - (int)(Time.realtimeSinceStartup - myLevelStartTime)).ToString();

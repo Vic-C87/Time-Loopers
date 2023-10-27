@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMaxHP: 1000
-  myScrapValue: 0
+  myScrapValue: 5
   myZoneMultiplier: 0
 --- !u!54 &4425504140967504390
 Rigidbody:

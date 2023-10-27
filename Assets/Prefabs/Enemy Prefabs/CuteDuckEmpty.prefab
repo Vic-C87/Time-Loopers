@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMaxHP: 10
-  myScrapValue: 0
+  myScrapValue: 5
   myZoneMultiplier: 0
 --- !u!114 &1350063896247715305
 MonoBehaviour:

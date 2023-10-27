@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BattleManager : MonoBehaviour
     List<Seeker> myInactives = new List<Seeker>();
     public bool IsFindingPath = false;
     float myCurrentLevelEarnings = 0;
+
+    [SerializeField] TextMeshProUGUI myWinLevelText;
 
     void Awake()
     {
@@ -33,6 +36,11 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         RequestNewPath();
+    }
+
+    public void ContinueToShop()
+    {
+        GameManager.sInstance.LoadShop();
     }
 
     public void DequeueMe(Seeker aSeeker)
