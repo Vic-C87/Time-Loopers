@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1053775490076594766}
   m_Layer: 0
   m_Name: StrongDuckEmpty
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   mySpeed: 5
-  myAcceptableStopDistance: 0
+  myAcceptableStopDistance: 0.5
 --- !u!54 &4257787964820252519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.5
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &5931357232825291570
