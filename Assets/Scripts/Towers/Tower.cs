@@ -22,6 +22,8 @@ public class Tower : MonoBehaviour
 
     Enemy myCurrentTarget;
     AudioSource myAudioSource;
+    [SerializeField] ParticleSystem myParticleSystem;
+    
 
     void Awake()
     {
@@ -38,10 +40,15 @@ public class Tower : MonoBehaviour
         {
             myAudioSource.clip = aClip;
         }
+        myParticleSystem.Stop();
     }
 
     void Update()
     {
+        if (myTowerType == ETowerType.FlamethrowerMan && Time.realtimeSinceStartup - myLastAttackTime >= myAttackRate)
+        {
+            myParticleSystem.Stop();
+        }
         if (!myHaveTarget)
         {
             GetTarget();
@@ -116,14 +123,23 @@ public class Tower : MonoBehaviour
         if (Time.realtimeSinceStartup - myLastAttackTime >= myAttackRate)
         {
             myLastAttackTime = Time.realtimeSinceStartup;
+            if (myTowerType == ETowerType.FlamethrowerMan)
+            {
+                myParticleSystem.Play();
+                ResetTarget(myCurrentTarget);
+                myAudioSource.Play();
+            }
+            else
+            {
 
-            GameObject pistolBullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f) + (transform.up * .2f), Quaternion.identity);
-            SetBulletRotation(pistolBullet);
-            myAnimationController.SetBool("myShootingAnimation", true);
-            pistolBullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
-            Debug.Log("Attacking " + myCurrentTarget);
-            ResetTarget(myCurrentTarget);
-            myAudioSource.Play();
+                GameObject bullet = Instantiate(myBulletPrefab, transform.position + (transform.forward * 0.1f) + (transform.up * .2f), Quaternion.identity);
+                SetBulletRotation(bullet);
+                myAnimationController.SetBool("myShootingAnimation", true);
+                bullet.GetComponent<Bullets>().ShootAt(myCurrentTarget.gameObject);
+                Debug.Log("Attacking " + myCurrentTarget);
+                ResetTarget(myCurrentTarget);
+                myAudioSource.Play();
+            }
         }
     }
 

@@ -1375,6 +1375,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995489206}
   m_CullTransparentMesh: 1
+--- !u!1001 &1065729659
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573564015459517536, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 949184449977792033, guid: a2504e4bc34814a41a2180c07b051872,
+        type: 3}
+      propertyPath: m_Name
+      value: FlamethrowerManEmpty
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a2504e4bc34814a41a2180c07b051872, type: 3}
 --- !u!1 &1230054389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,3 +2176,4 @@ SceneRoots:
   - {fileID: 6416211155914799000}
   - {fileID: 1230054391}
   - {fileID: 8781154672098025163}
+  - {fileID: 1065729659}
