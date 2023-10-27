@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TowerPlacementManager : MonoBehaviour
 {
@@ -30,6 +32,35 @@ public class TowerPlacementManager : MonoBehaviour
 
     AudioSource myAudioSource;
 
+    int myAvailablePistolMan = 0;
+    int myAvailableDoublePistolMan = 0;
+    int myAvailableSniperMan = 0;
+    int myAvailableFlamethrowerMan = 0;
+
+    float myAttackSpeedBonus;
+    float myRangeBonus;
+    float myDamageBonus;
+
+    [SerializeField] TextMeshProUGUI myBuyPistolMan;
+    [SerializeField] TextMeshProUGUI myBuyDoublePistolMan;
+    [SerializeField] TextMeshProUGUI myBuySniperMan;
+    [SerializeField] TextMeshProUGUI myBuyFlamethrowerMan;
+
+    [SerializeField] Button[] myButtonsToHide;
+
+    [SerializeField] float myLevelTime;
+    float myLevelStartTime;
+
+    bool myTimeIsUp = false;
+
+    bool myGameStarted = false;
+
+    bool myIsPlacing = true;
+
+    [SerializeField] TextMeshProUGUI myTimerText;
+
+    ETowerType myCurrentPickedType;
+
     void Awake()
     {
         myAudioSource = GetComponent<AudioSource>();
@@ -38,6 +69,11 @@ public class TowerPlacementManager : MonoBehaviour
         myGridSizeX = Mathf.RoundToInt(GridWorldSize.x / myNodeDiameter);
         myGridSizeY = Mathf.RoundToInt(GridWorldSize.y / myNodeDiameter);
         CreatePlacementGrid();
+    }
+
+    private void Start()
+    {
+        SetAvailabelUnits();
     }
 
     void Update()
@@ -56,7 +92,65 @@ public class TowerPlacementManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             myCurrentPickedTower = null;
+            myCurrentPickedType = ETowerType.Null;
         }
+
+        if (Time.realtimeSinceStartup - myLevelStartTime >= myLevelTime && !myIsPlacing) 
+        {
+            Debug.Log("Time is UP!");
+            myTimeIsUp = true;
+            myGameStarted = false;
+            myTimerText.text = "Time Left: " + 0;
+            Time.timeScale = 0f;
+        }
+        if (myGameStarted)
+            myTimerText.text = "Time Left: " + (myLevelTime - (int)(Time.realtimeSinceStartup - myLevelStartTime)).ToString();
+    }
+
+    public void HideBuyCanvas()
+    {
+        foreach (Button button in myButtonsToHide) 
+        {
+            button.gameObject.SetActive(false);
+        }
+        myLevelStartTime = Time.realtimeSinceStartup;
+        myGameStarted = true;
+        myIsPlacing = false;
+    }
+
+    void SetAvailabelUnits()
+    {
+        myAttackSpeedBonus = GameManager.sInstance.GetAttackSpeedBonus();
+        myRangeBonus = GameManager.sInstance.GetRangeBonus();
+        myDamageBonus = GameManager.sInstance.GetDamageBonus();
+
+        ETowerType[] towers = GameManager.sInstance.GetOwnedTowers().ToArray();
+
+        foreach(ETowerType tower in towers) 
+        {
+            switch(tower) 
+            {
+                case ETowerType.PistolMan:
+                    myAvailablePistolMan++;
+                    break;
+                case ETowerType.DoublePistolMan:
+                    myAvailableDoublePistolMan++; 
+                    break;
+                case ETowerType.SniperMan: 
+                    myAvailableSniperMan++; 
+                    break;
+                case ETowerType.FlamethrowerMan:
+                    myAvailableFlamethrowerMan++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        myBuyPistolMan.text = "Pistol Man x" + myAvailablePistolMan;
+        myBuyDoublePistolMan.text = "Double Pistol Man x" + myAvailableDoublePistolMan;
+        myBuySniperMan.text = "Sniper Man x" + myAvailableSniperMan;
+        myBuyFlamethrowerMan.text = "Flamethrower Man x" + myAvailableFlamethrowerMan;
     }
 
     void CreatePlacementGrid()
@@ -96,22 +190,38 @@ public class TowerPlacementManager : MonoBehaviour
 
     public void PickPistolMan()
     {
-        myCurrentPickedTower = myPistolManPrefab;
+        if (myAvailablePistolMan > 0)
+        {
+            myCurrentPickedTower = myPistolManPrefab;
+            myCurrentPickedType = ETowerType.PistolMan;
+        }
     }
 
     public void PickDoublePistolMan()
     {
-        myCurrentPickedTower = myDoublePistolManPrefab;
+        if (myAvailableDoublePistolMan > 0)
+        {
+            myCurrentPickedTower = myDoublePistolManPrefab;
+            myCurrentPickedType = ETowerType.DoublePistolMan;
+        }
     }
 
     public void PickSniperMan()
     {
-        myCurrentPickedTower = mySniperManPrefab;
+        if (myAvailableSniperMan > 0)
+        {
+            myCurrentPickedTower = mySniperManPrefab;
+            myCurrentPickedType = ETowerType.SniperMan;
+        }
     }
 
     public void PickFlamethrowerMan()
     {
-        myCurrentPickedTower = myFlamethrowerManPrefab;
+        if (myAvailableFlamethrowerMan > 0)
+        {
+            myCurrentPickedTower = myFlamethrowerManPrefab;
+            myCurrentPickedType = ETowerType.FlamethrowerMan;
+        }
     }
 
     public void PlaceTower(Vector3 aPosition)
@@ -129,6 +239,52 @@ public class TowerPlacementManager : MonoBehaviour
                     myAudioSource.clip = aClip;
                     myAudioSource.Play();
                 }
+
+                switch (myCurrentPickedType) 
+                {
+                    case ETowerType.PistolMan:
+                        myAvailablePistolMan--;
+                        myBuyPistolMan.text = "Pistol Man x" + myAvailablePistolMan;
+                        if (myAvailablePistolMan < 1)
+                        {
+                            myCurrentPickedTower = null;
+                            myCurrentPickedType = ETowerType.Null;
+                        }
+                            
+                        break;
+                    case ETowerType.DoublePistolMan:
+                        myAvailableDoublePistolMan--;
+                        myBuyDoublePistolMan.text = "Double Pistol Man x" + myAvailableDoublePistolMan;
+                        if (myAvailableDoublePistolMan < 1)
+                        {
+                            myCurrentPickedTower = null;
+                            myCurrentPickedType = ETowerType.Null;
+                        }
+                        break;
+                    case ETowerType.SniperMan:
+                        myAvailableSniperMan--;
+                        myBuySniperMan.text = "Sniper Man x" + myAvailableSniperMan;
+                        if (myAvailableSniperMan < 1)
+                        {
+                            myCurrentPickedTower = null;
+                            myCurrentPickedType = ETowerType.Null;
+                        }
+                        break;
+                    case ETowerType.FlamethrowerMan:
+                        myAvailableFlamethrowerMan--;
+                        myBuyFlamethrowerMan.text = "Flamethrower Man x" + myAvailableFlamethrowerMan;
+                        if (myAvailableFlamethrowerMan < 1)
+                        {
+                            myCurrentPickedTower = null;
+                            myCurrentPickedType = ETowerType.Null;
+                        }
+                        break;
+                    default:
+                        myCurrentPickedTower = null;
+                        myCurrentPickedType = ETowerType.Null;
+                        break;
+                }
+
             }
         }
     }

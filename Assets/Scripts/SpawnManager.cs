@@ -27,4 +27,11 @@ public class SpawnManager : MonoBehaviour
             mySpawnPoints[2].SpawnEnemy(0);
         }
     }
+
+    public void StartBattle()
+    {
+        mySpawnPoints[0].SpawnEnemy(0);
+        mySpawnPoints[1].SpawnEnemy(0);
+        mySpawnPoints[2].SpawnEnemy(0);
+    }
 }

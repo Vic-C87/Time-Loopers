@@ -71,6 +71,11 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public ETowerType GetTowerType() 
+    {
+        return myTowerType;
+    }
+
     public void EnemyEnteredTrigger(Enemy aTarget)
     {
         myPossibleTargets.Add(aTarget);

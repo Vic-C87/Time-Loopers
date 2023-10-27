@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,9 +28,11 @@ public class GameManager : MonoBehaviour
     float myRangeBonus;
     float myDamageBonus;
 
+    GameObject myCanvas;
+
     private void Awake()
     {
-        currentBiomass = 1000;
+        currentBiomass = 5000;
 
         if (sInstance != null && sInstance != this)
         {
@@ -40,16 +43,42 @@ public class GameManager : MonoBehaviour
             sInstance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        myCanvas = GetComponentInChildren<Canvas>().gameObject;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        UpdateBiomassText();
     }
 
     // Update is called once per frame
     void Update()
+    {
+    }
+
+    public List<ETowerType> GetOwnedTowers()
+    {
+        return myBoughtTowers;
+    }
+
+    public float GetAttackSpeedBonus() { return myAttackSpeedBonus; }
+    public float GetRangeBonus() {  return myRangeBonus; }
+    public float GetDamageBonus() {  return myDamageBonus; }
+
+    public void LoadShop()
+    {
+        SceneManager.LoadScene(1);
+        myCanvas.SetActive(true);
+    }
+
+    public void ExitShop()
+    {
+        myCanvas.SetActive(false);
+        SceneManager.LoadScene(2);
+    }
+
+    void UpdateBiomassText()
     {
         myBiomassText.text = $"Biomass: {currentBiomass}";
     }
@@ -110,6 +139,7 @@ public class GameManager : MonoBehaviour
                 myBoughtTowers.Add(ETowerType.Null);
                 break;
         }
+        UpdateBiomassText();
     }
 
     public void RemoveTower(int value)
@@ -168,6 +198,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Can't sell what you don't have");
                 break;
         }
+        UpdateBiomassText();
     }
 
 
@@ -215,6 +246,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Nope");
                 break;
         }
+        UpdateBiomassText();
     }
 
     public void BuyAttackSpeedUpgrade()
@@ -237,6 +269,7 @@ public class GameManager : MonoBehaviour
             currentBiomass -= 40;
             Debug.Log("First Attack Speed Upgrade Bought!");
         }
+        UpdateBiomassText();
     }
     public void BuyRangeUpgrade()
     {
@@ -258,6 +291,7 @@ public class GameManager : MonoBehaviour
             currentBiomass -= 60;
             Debug.Log("First Range Upgrade Bought!");
         }
+        UpdateBiomassText();
     }
 
     public void BuyDamageUpgrade()
@@ -280,6 +314,7 @@ public class GameManager : MonoBehaviour
             currentBiomass -= 80;
             Debug.Log("First Damage Upgrade Bought!");
         }
+        UpdateBiomassText();
     }
 
     public enum EUnlockTurret

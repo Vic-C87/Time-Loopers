@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 7c9ab41debf85bc4f932c4ca6cb4a5f5
   - enabled: 1
     path: Assets/Scenes/DuckIt/Shop.unity
-    guid: 79c7a0731d63b474087220822ea17b99
+    guid: bc1661479a95a5e4aab47100c873fe1c
   - enabled: 1
     path: Assets/Scenes/DuckIt/Game.unity
     guid: a17be9ea39322734996ecfcb77ebf389

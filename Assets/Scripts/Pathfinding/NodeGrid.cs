@@ -42,6 +42,8 @@ public class NodeGrid : MonoBehaviour
     public void StartBattle()
     {
         CreateGrid();
+        FindObjectOfType<SpawnManager>().StartBattle();
+        FindObjectOfType<TowerPlacementManager>().HideBuyCanvas();
     }
 
     public int myMaxSize
