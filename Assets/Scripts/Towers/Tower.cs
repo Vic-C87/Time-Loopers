@@ -27,6 +27,7 @@ public class Tower : MonoBehaviour
     {
         myPossibleTargets = new List<Enemy>();
         myAudioSource = GetComponent<AudioSource>();
+        myAnimationController = GetComponentInChildren<Animator>();
     }
 
     void Start()
