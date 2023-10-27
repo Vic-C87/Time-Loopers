@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        BattleManager.sInstance.AddLevelEarnings(myZoneMultiplier * myScrapValue);
+        GameManager.sInstance.LevelEarnings += myScrapValue;
         Destroy(this.gameObject);
     }
     public float DoDamage()

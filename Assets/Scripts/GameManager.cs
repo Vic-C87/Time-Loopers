@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     static public GameManager sInstance;
 
     [field: SerializeField] public int currentBiomass { get; set; }
+    public int LevelEarnings { get; set; } = 0;
     [SerializeField] private TextMeshProUGUI myBiomassText;
     [SerializeField] private TextMeshProUGUI myNextRound;
     [SerializeField] private TextMeshProUGUI myWeakness;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadShop()
     {
+        currentBiomass += LevelEarnings;
         SceneManager.LoadScene(1);
         myCanvas.SetActive(true);
     }
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     public void ExitShop()
     {
         myCanvas.SetActive(false);
+        LevelEarnings = 0;
         SceneManager.LoadScene(2);
     }
 
