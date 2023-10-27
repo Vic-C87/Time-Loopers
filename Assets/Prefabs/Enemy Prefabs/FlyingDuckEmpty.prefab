@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beaa580175639d645a9f58b7cd327bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaxHP: 1000
+  myMaxHP: 40
   myScrapValue: 5
   myZoneMultiplier: 0
 --- !u!54 &4425504140967504390

@@ -35,9 +35,11 @@ public class GameManager : MonoBehaviour
 
     public AudioSource myAudioSource;
 
+    int myGameLevel = 0;
+
     private void Awake()
     {
-        currentBiomass = 5000;
+        currentBiomass = 50;
 
         if (sInstance != null && sInstance != this)
         {
@@ -52,15 +54,14 @@ public class GameManager : MonoBehaviour
         myAudioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         UpdateBiomassText();
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetGameLevel()
     {
+        return myGameLevel;
     }
 
     public List<ETowerType> GetOwnedTowers()
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void LoadShop()
     {
         currentBiomass += LevelEarnings;
+        UpdateBiomassText();
         myClipName = EClipName.ShopMusic;
         if (SoundManager.sInstance.GetAudioClip(myClipName, out AudioClip anAudioClip) )
         {
@@ -82,14 +84,14 @@ public class GameManager : MonoBehaviour
             myAudioSource.Play();
         }
         SceneManager.LoadScene(1);
-        myCanvas.SetActive(true);
-        
+        myCanvas.SetActive(true);      
     }
 
     public void ExitShop()
     {
         myCanvas.SetActive(false);
         LevelEarnings = 0;
+        myGameLevel++;
         SceneManager.LoadScene(2);
         Time.timeScale = 1f;
     }

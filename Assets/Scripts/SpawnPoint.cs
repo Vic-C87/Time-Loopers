@@ -6,33 +6,20 @@ public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] GameObject[] myEnemyPrefabs;
 
-    int mySpawnIndex = 0;
-
     [SerializeField] Transform myEnemyTarget;
 
-    void Start()
+    public void SpawnEnemy(int aLevel)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void SpawnEnemy(int anIndex = -1)
-    {
-        if (mySpawnIndex < myEnemyPrefabs.Length && anIndex == -1) 
+        if (aLevel == 1) 
         {
-            GameObject enemy = Instantiate(myEnemyPrefabs[mySpawnIndex], transform.position, Quaternion.identity);
+            GameObject enemy = Instantiate(myEnemyPrefabs[0], transform.position, Quaternion.identity);
             enemy.GetComponent<Seeker>().Target = myEnemyTarget;
-            mySpawnIndex++;
         }
-        else if (anIndex != -1)
+        else 
         {
-            GameObject enemy = Instantiate(myEnemyPrefabs[anIndex], transform.position, Quaternion.identity);
+            int spawnIndex = Random.Range(0, myEnemyPrefabs.Length);
+            GameObject enemy = Instantiate(myEnemyPrefabs[spawnIndex], transform.position, Quaternion.identity);
             enemy.GetComponent<Seeker>().Target = myEnemyTarget;
-
         }
     }
 }

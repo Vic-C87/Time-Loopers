@@ -5,23 +5,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected int myLevel;                                  // level of enemy
-    [SerializeField] protected float myMaxHP = 1000;        // maximum hp 
-    protected float myHP;                                   // current hp
-    [SerializeField] protected int myScrapValue;                             // base value when killed
-    [SerializeField] protected int myZoneMultiplier;         // multiplier for value based on zone
-    protected float myDamage;                               // damage output
-    protected float myAttackRate;                           // seconds per hit
-    protected bool myIsAttacking;                           // whether attacking or not
-    protected float myLastHit;                              // time since last hit
-    protected Seeker mySeeker;              
-    protected Animator myAnimator;
-    protected Rigidbody myBody;
+    int myLevel;                                   
+    [SerializeField] float myMaxHP;        
+    float myHP;                                    
+    [SerializeField] int myScrapValue;             
+    [SerializeField] int myZoneMultiplier;         
+    [SerializeField] float myDamage;               
+    float myAttackRate;                            
+    bool myIsAttacking;                            
+    float myLastHit;                               
+    Seeker mySeeker;              
+    Animator myAnimator;
+    Rigidbody myBody;
     bool myIsTakingPlasmaDamage = false;
 
     float myPlasmaDamageTaken;
 
-    // Start is called before the first frame update
     void Awake()
     {
         myZoneMultiplier = 1;
@@ -36,19 +35,6 @@ public class Enemy : MonoBehaviour
     {
         myPlasmaDamageTaken = 15f;
         //Make call to static GameManager to set myPlasmaDamageTaken
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (myIsAttacking)
-        {       
-            if ((Time.realtimeSinceStartup - myLastHit) > myAttackRate)
-            {
-                DoDamage();
-                myLastHit = Time.realtimeSinceStartup;
-            }     
-        }
     }
 
     void FixedUpdate()
@@ -92,14 +78,11 @@ public class Enemy : MonoBehaviour
         return myDamage;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public float Explode()
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Attacking");
-            myIsAttacking = true;
-            mySeeker.StopFollow();
-        }
+        //Instantiate Explosion
+        Destroy(this.gameObject, 0.2f);
+        return myDamage;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -114,7 +97,6 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        //Debug.Log("Plasma damage from " + other.gameObject.tag);
         if (other.GetComponent<ParticleSystem>().GetComponentInParent<Tower>())
             myIsTakingPlasmaDamage = true;
     }

@@ -42,7 +42,7 @@ public class NodeGrid : MonoBehaviour
     public void StartBattle()
     {
         CreateGrid();
-        FindObjectOfType<SpawnManager>().StartBattle();
+        FindObjectOfType<SpawnManager>().StartBattle(GameManager.sInstance.GetGameLevel() + 1);
         FindObjectOfType<TowerPlacementManager>().HideBuyCanvas();
     }
 

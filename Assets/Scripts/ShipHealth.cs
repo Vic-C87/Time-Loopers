@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class ShipHealth : MonoBehaviour
 {
     [SerializeField] public float maxHealth = 100;
     [SerializeField] public float currentHealth;
+
+    [SerializeField] Slider mySlider;
 
     private void Awake()
     {
@@ -24,11 +27,12 @@ public class Health : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            currentHealth -= collision.gameObject.GetComponent<Enemy>().DoDamage();
+            currentHealth -= other.gameObject.GetComponent<Enemy>().Explode();
+            mySlider.value = currentHealth / maxHealth;
         }
     }
 }
