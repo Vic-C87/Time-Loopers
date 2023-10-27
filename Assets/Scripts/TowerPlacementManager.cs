@@ -48,10 +48,8 @@ public class TowerPlacementManager : MonoBehaviour
 
     [SerializeField] Button[] myButtonsToHide;
 
-    [SerializeField] float myLevelTime;
+    float myLevelTime = 5f;
     float myLevelStartTime;
-
-    bool myTimeIsUp = false;
 
     bool myGameStarted = false;
 
@@ -79,6 +77,7 @@ public class TowerPlacementManager : MonoBehaviour
     {
         SetAvailabelUnits();
         myWinLevel.SetActive(false);
+        myTimerText.text = "Time Left: 10";
     }
 
     void Update()
@@ -103,12 +102,12 @@ public class TowerPlacementManager : MonoBehaviour
         if (Time.realtimeSinceStartup - myLevelStartTime >= myLevelTime && !myIsPlacing) 
         {
             Debug.Log("Time is UP!");
-            myTimeIsUp = true;
             myGameStarted = false;
             myTimerText.text = "Time Left: " + 0;
             Time.timeScale = 0f;
             myWinLevel.SetActive(true);
             myWinLevelText.text = myWinText + " " + GameManager.sInstance.LevelEarnings + " Biomass";
+            myLevelTime = 5f;
         }
         if (myGameStarted)
             myTimerText.text = "Time Left: " + (myLevelTime - (int)(Time.realtimeSinceStartup - myLevelStartTime)).ToString();
@@ -121,6 +120,8 @@ public class TowerPlacementManager : MonoBehaviour
             button.gameObject.SetActive(false);
         }
         myLevelStartTime = Time.realtimeSinceStartup;
+        myLevelTime = ((GameManager.sInstance.GetGameLevel() * 5)+5);
+        myLevelTime = Mathf.Clamp(myLevelTime, myLevelTime, 77f);
         myGameStarted = true;
         myIsPlacing = false;
         if (SoundManager.sInstance.GetAudioClip(EClipName.BattleMusic, out AudioClip anAudioClip)) 

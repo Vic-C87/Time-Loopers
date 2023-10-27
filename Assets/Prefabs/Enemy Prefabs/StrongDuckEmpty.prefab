@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beaa580175639d645a9f58b7cd327bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMaxHP: 1000
-  myScrapValue: 5
+  myMaxHP: 20
+  myScrapValue: 30
   myZoneMultiplier: 0
 --- !u!114 &4182188780184170813
 MonoBehaviour:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  mySpeed: 5
+  mySpeed: 2
   myAcceptableStopDistance: 0.5
 --- !u!54 &4257787964820252519
 Rigidbody:
@@ -91,7 +91,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &1053775490076594766
 CapsuleCollider:

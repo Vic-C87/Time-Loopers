@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMaxHP: 10
-  myScrapValue: 5
+  myScrapValue: 15
   myZoneMultiplier: 0
 --- !u!114 &1350063896247715305
 MonoBehaviour:
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  mySpeed: 5
+  mySpeed: 7
   myAcceptableStopDistance: 0.5
 --- !u!54 &7366578860719715332
 Rigidbody:

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4081062360439233956}
   - component: {fileID: 5548598510854678567}
   - component: {fileID: 434953329830666599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SniperManEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +62,7 @@ MonoBehaviour:
   myAnimationController: {fileID: 3365245578764214233, guid: 3a1a0b401eb69d545b5c6a9ff59adda1,
     type: 3}
   myCost: 0
+  myParticleSystem: {fileID: 0}
 --- !u!65 &4081062360439233956
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 9088460933523395255}
   - component: {fileID: 3930216799459039603}
   - component: {fileID: 7333216513805979509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoublePistolManEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   mySoundEffect: 5
   myAnimationController: {fileID: 0}
   myCost: 0
+  myParticleSystem: {fileID: 0}
 --- !u!65 &9088460933523395255
 BoxCollider:
   m_ObjectHideFlags: 0

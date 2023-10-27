@@ -7,31 +7,49 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject mySpawns;
     SpawnPoint[] mySpawnPoints;
 
+    float mySpawnDelay = 3f;
+    float myTimeSinceSpawn;
+
+    int mySpawnCounter = 0;
+
+    bool myStartSpawn = false;
+
+    int myMaxSpawns;
+
     void Awake()
     {
         mySpawnPoints = mySpawns.GetComponentsInChildren<SpawnPoint>();
     }
 
+    void Start()
+    {
+        
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Time.realtimeSinceStartup - myTimeSinceSpawn >= mySpawnDelay && myStartSpawn) 
         {
-            mySpawnPoints[0].SpawnEnemy(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            mySpawnPoints[1].SpawnEnemy(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            mySpawnPoints[2].SpawnEnemy(0);
+            Spawn();
         }
     }
 
-    public void StartBattle()
+    public void StartBattle(int aMaxSpawns)
     {
-        mySpawnPoints[0].SpawnEnemy(0);
-        mySpawnPoints[1].SpawnEnemy(0);
-        mySpawnPoints[2].SpawnEnemy(0);
+        myStartSpawn = true;
+        myMaxSpawns = aMaxSpawns;
+    }
+
+    void Spawn()
+    {
+        mySpawnPoints[0].SpawnEnemy(GameManager.sInstance.GetGameLevel());
+        mySpawnPoints[1].SpawnEnemy(GameManager.sInstance.GetGameLevel());
+        mySpawnPoints[2].SpawnEnemy(GameManager.sInstance.GetGameLevel());
+        myTimeSinceSpawn = Time.realtimeSinceStartup;
+        mySpawnCounter++;
+        if (mySpawnCounter >= myMaxSpawns)
+        {
+            myStartSpawn = false;
+        }
     }
 }

@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 283472360294459161}
   - component: {fileID: 8510045700337239936}
   - component: {fileID: 1558748199115354744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PistolManEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,6 +128,7 @@ MonoBehaviour:
   myAnimationController: {fileID: -6774033554418686040, guid: da3c1ff113dd90444bfc2099a56c271b,
     type: 3}
   myCost: 0
+  myParticleSystem: {fileID: 0}
 --- !u!65 &283472360294459161
 BoxCollider:
   m_ObjectHideFlags: 0
