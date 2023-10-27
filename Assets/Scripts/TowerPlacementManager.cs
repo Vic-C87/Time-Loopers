@@ -9,6 +9,8 @@ public class TowerPlacementManager : MonoBehaviour
     float myLastPlacementTime;
     [SerializeField] GameObject myPistolManPrefab;
     [SerializeField] GameObject myDoublePistolManPrefab;
+    [SerializeField] GameObject mySniperManPrefab;
+    [SerializeField] GameObject myFlamethrowerManPrefab;
 
     [SerializeField] GameObject myCurrentPickedTower;
 
@@ -100,6 +102,16 @@ public class TowerPlacementManager : MonoBehaviour
     public void PickDoublePistolMan()
     {
         myCurrentPickedTower = myDoublePistolManPrefab;
+    }
+
+    public void PickSniperMan()
+    {
+        myCurrentPickedTower = mySniperManPrefab;
+    }
+
+    public void PickFlamethrowerMan()
+    {
+        myCurrentPickedTower = myFlamethrowerManPrefab;
     }
 
     public void PlaceTower(Vector3 aPosition)
