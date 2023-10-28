@@ -14,6 +14,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI myWinLevelText;
 
+    [SerializeField] GameObject myBoom;
+
     void Awake()
     {
         if (sInstance != null && sInstance != this)
@@ -36,6 +38,11 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         RequestNewPath();
+    }
+
+    public GameObject GetBoom() 
+    {
+        return myBoom;
     }
 
     public void ContinueToShop()

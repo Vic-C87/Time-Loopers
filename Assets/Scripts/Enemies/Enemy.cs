@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
             myHP = 0;
             Die();
         }
-        myBody.AddForce(aBullet.transform.up * someDamage, ForceMode.Impulse);
+        myBody.AddForce(aBullet.transform.up * 2, ForceMode.Impulse);
     }
 
     void TakePlasmaDamage()
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         GameManager.sInstance.LevelEarnings += myScrapValue;
-        Destroy(this.gameObject);
+        Explode();
     }
     public float DoDamage()
     {
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
 
     public void Explode()
     {
-        //Instantiate Explosion
+        Instantiate(BattleManager.sInstance.GetBoom(), transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 

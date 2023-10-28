@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject mySpawns;
     SpawnPoint[] mySpawnPoints;
 
-    float mySpawnDelay = 3f;
+    float mySpawnDelay = 1.5f;
     float myTimeSinceSpawn;
 
     int mySpawnCounter = 0;

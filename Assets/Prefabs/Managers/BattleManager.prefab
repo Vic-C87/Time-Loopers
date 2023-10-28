@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFindingPath: 0
+  myWinLevelText: {fileID: 0}
+  myBoom: {fileID: 336012324325959443, guid: 349361d897ff9624f934210b59c98b8d, type: 3}
 --- !u!114 &5056331692023534496
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  mySpeed: 2
+  mySpeed: 3
   myAcceptableStopDistance: 0.5
 --- !u!54 &4257787964820252519
 Rigidbody:
