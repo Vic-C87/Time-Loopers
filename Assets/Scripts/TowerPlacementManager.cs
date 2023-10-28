@@ -77,7 +77,7 @@ public class TowerPlacementManager : MonoBehaviour
     {
         SetAvailabelUnits();
         myWinLevel.SetActive(false);
-        myTimerText.text = "Time Left: 10";
+        myTimerText.text = "Time Left: " + ((GameManager.sInstance.GetGameLevel() * 5) + 5);
     }
 
     void Update()

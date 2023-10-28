@@ -31,7 +31,8 @@ public class ShipHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            currentHealth -= other.gameObject.GetComponent<Enemy>().Explode();
+            currentHealth -= other.gameObject.GetComponent<Enemy>().DoDamage();
+            other.gameObject.GetComponent<Enemy>().Explode();
             mySlider.value = currentHealth / maxHealth;
         }
     }

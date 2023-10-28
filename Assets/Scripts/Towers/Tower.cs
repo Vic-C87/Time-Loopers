@@ -40,8 +40,6 @@ public class Tower : MonoBehaviour
         {
             myAudioSource.clip = aClip;
         }
-        //if (myTowerType == ETowerType.FlamethrowerMan)
-            //myParticleSystem.Stop();
     }
 
     void Update()
@@ -119,19 +117,15 @@ public class Tower : MonoBehaviour
         if (myCurrentTarget !=  null) 
         {
             myAnimationController.SetBool("myShootingAnimation", false);
-            Quaternion oldRotation = transform.rotation;            
-            transform.LookAt(myCurrentTarget.transform);
-            Quaternion newRotation = transform.rotation;
-            transform.rotation = oldRotation;
+            Quaternion newRotation = Quaternion.FromToRotation(transform.position, myCurrentTarget.transform.position);//transform.rotation;
             if (transform.rotation.eulerAngles.y <= newRotation.eulerAngles.y + 1f && transform.rotation.eulerAngles.y >= newRotation.eulerAngles.y - 1f)
             {
                 myIsFacingTarget = true;
             }
-
+            
             Quaternion currentRotation = Quaternion.Slerp(transform.rotation, newRotation, myTurnSpeed * Time.deltaTime);
             currentRotation.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
             transform.rotation = currentRotation;
-
         }
         else
         {

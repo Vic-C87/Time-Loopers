@@ -78,11 +78,10 @@ public class Enemy : MonoBehaviour
         return myDamage;
     }
 
-    public float Explode()
+    public void Explode()
     {
         //Instantiate Explosion
-        Destroy(this.gameObject, 0.2f);
-        return myDamage;
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

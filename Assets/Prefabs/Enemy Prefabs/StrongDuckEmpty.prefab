@@ -51,6 +51,7 @@ MonoBehaviour:
   myMaxHP: 20
   myScrapValue: 30
   myZoneMultiplier: 0
+  myDamage: 10
 --- !u!114 &4182188780184170813
 MonoBehaviour:
   m_ObjectHideFlags: 0
