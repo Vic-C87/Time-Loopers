@@ -15550,7 +15550,7 @@ PrefabInstance:
     - target: {fileID: 824644723604907041, guid: 91a01323283de6248a5cb52b258904c9,
         type: 3}
       propertyPath: myButtonsToHide.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 824644723604907041, guid: 91a01323283de6248a5cb52b258904c9,
         type: 3}
@@ -15576,7 +15576,7 @@ PrefabInstance:
         type: 3}
       propertyPath: myButtonsToHide.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 764941089}
     - target: {fileID: 824644723604907041, guid: 91a01323283de6248a5cb52b258904c9,
         type: 3}
       propertyPath: myButtonsToHide.Array.data[5]
