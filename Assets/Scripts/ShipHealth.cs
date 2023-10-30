@@ -27,13 +27,24 @@ public class ShipHealth : MonoBehaviour
 
     }
 
+    void LooseGame()
+    {
+        Debug.Log("Game Over!");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             currentHealth -= other.gameObject.GetComponent<Enemy>().DoDamage();
             other.gameObject.GetComponent<Enemy>().Explode();
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                LooseGame();
+            }
             mySlider.value = currentHealth / maxHealth;
+
         }
     }
 }
